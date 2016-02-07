@@ -6,18 +6,15 @@ angular.module('wikiApp')
   $stateProvider
     .state('main', {
       url: '/main?login',
-      templateUrl: 'js/components/main/main.html',
-      controller:'mainCtrl'
+      template: '<main-page></main-page>',
     })
     .state('resource', {
       url: '/resource/:resourceId',
-      templateUrl: 'js/components/resource/resource.html',
-      controller:'resourceCtrl'
+      template: '<resource-page></resource-page>',
     })
     .state('list', {
       url: '/list',
-      templateUrl: 'js/components/list/list.html',
-      controller:'listCtrl'
+      template: '<list-page></list-page>',
     });
 
   $urlRouterProvider.otherwise('main');

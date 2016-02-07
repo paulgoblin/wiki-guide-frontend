@@ -1,1 +1,17 @@
-@import "my_scss/main"
+$background-color: #FDFDFD;
+$font-color: #545454;
+$light-font-color: #D4D4D4;
+$global-gutter: 3em;
+
+body {
+  background: $background-color;
+  color: $font-color;
+}
+
+a {
+  color: $font-color;
+}
+
+@import "my_scss/global";
+@import "my_scss/main";
+@import "my_scss/navBar";
