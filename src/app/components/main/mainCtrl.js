@@ -1,2 +1,6 @@
 'use strict';
-console.log("cool beans");
+angular.module('wikiApp')
+
+.controller('mainCtrl', function($scope, $stateParams) {
+  $scope.test = 'penguin'
+});
