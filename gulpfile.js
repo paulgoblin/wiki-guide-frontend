@@ -20,6 +20,7 @@ var dirs = {
 }
 
 gulp.task('default', ['clean', 'sass', 'assets', 'bundle', 'watch']);
+gulp.task('buildDontWatch', ['clean', 'sass', 'assets', 'bundle']);
 
 gulp.task('clean', function(){
   del('dist/*');
@@ -39,27 +40,20 @@ gulp.task('assets',['sass'], function() {
     .pipe(gulp.dest(dirs.out.lib))
 });
 
-gulp.task('bundle', ['clean'], function(done) {
+gulp.task('bundle', function(done) {
   gulp.src('src/app/index.html')
     .pipe(gulp.dest('dist'))
   gulp.src(dirs.src.js)
     .pipe(ignore('index.html'))
+    .pipe(ignore('app.scss'))
+    .pipe(ignore('my_scss'))
     .pipe(gulp.dest('dist/js'))
     .on('end', done)
-});
-
-var stream
-gulp.task('serve', function() {
-  stream = gulp.src('dist')
-    .pipe(webserver({
-      livereload: true,
-      directoryListing: false
-    }));
 });
 
 gulp.task('watch', function() {
   gulp.watch(dirs.src.html, ['assets', 'bundle']);
   gulp.watch(dirs.src.lib, ['assets']);
   gulp.watch(dirs.src.scss, ['sass']);
-  gulp.watch(dirs.src.js, ['bundle']);
+  gulp.watch(dirs.src.js, ['buildDontWatch']);
 });
