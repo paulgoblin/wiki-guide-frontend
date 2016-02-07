@@ -1,9 +1,11 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
-var rimraf = require('rimraf');
+var ignore = require('gulp-ignore');
+var rimraf = require('gulp-rimraf');
 var webpack = require('webpack');
 var gutil = require('gulp-util')
 var webserver = require('gulp-webserver');
+var browserSync = require('browser-sync').create();
 var minifyCss = require('gulp-minify-css');
 
 var dirs = {
@@ -23,10 +25,11 @@ var dirs = {
 gulp.task('default', ['clean' ,'sass', 'assets', 'bundle', 'templates', 'watch', 'serve']);
 
 gulp.task('clean', function(done){
-  rimraf('./dist/*', done)
+  if (stream) stream.emit('kill');
+  return gulp.src('/dist/*', { read: false }) // much faster
+  .pipe(ignore('node_modules/**'))
+  .pipe(rimraf());
 })
-
-// gulp.task('dev', ['sass','assets', 'bundle', 'templates']);
 
 gulp.task('sass', ['clean'], function(done) {
   gulp.src(dirs.src.scss)
@@ -34,6 +37,9 @@ gulp.task('sass', ['clean'], function(done) {
     .on('error', sass.logError)
     .pipe(minifyCss())
     .pipe(gulp.dest(dirs.out.css))
+    .pipe(browserSync.reload({
+      stream: true
+    }))
     .on('end', done);
 });
 
@@ -43,11 +49,14 @@ gulp.task('assets', function() {
 });
 
 gulp.task('bundle', ['clean'], function(done) {
-  webpack(require("./webpack.config.js"), function(err, stats) {
-    if(err) throw new gutil.PluginError("webpack", err);
-    gutil.log("[webpack]", stats.toString({}));
-    done();
-  });
+  gulp.src(dirs.src.js)
+    .pipe(gulp.dest('dist/js'))
+    .on('end', done)
+  // webpack(require("./webpack.config.js"), function(err, stats) {
+  //   if(err) throw new gutil.PluginError("webpack", err);
+  //   gutil.log("[webpack -wd]", stats.toString({}));
+  //   done();
+  // });
 });
 
 gulp.task('templates', function(){
@@ -55,8 +64,17 @@ gulp.task('templates', function(){
     .pipe(gulp.dest(dirs.out.html))
 })
 
+// gulp.task('browserSync', function() {
+//   browserSync.init({
+//     server: {
+//       baseDir: 'dist'
+//     },
+//   })
+// })
+
+var stream
 gulp.task('serve', function() {
-  gulp.src('dist')
+  stream = gulp.src('dist')
     .pipe(webserver({
       livereload: true,
       directoryListing: false
@@ -64,8 +82,8 @@ gulp.task('serve', function() {
 });
 
 gulp.task('watch', function() {
-  gulp.watch(dirs.src.html, ['templates']);
-  gulp.watch(dirs.src.lib, ['assets']);
-  gulp.watch(dirs.src.scss, ['sass']);
-  gulp.watch(dirs.src.js, ['bundle']);
+  gulp.watch(dirs.src.html, ['default']);
+  gulp.watch(dirs.src.lib, ['default']);
+  gulp.watch(dirs.src.scss, ['default']);
+  gulp.watch(dirs.src.js, ['default']);
 });

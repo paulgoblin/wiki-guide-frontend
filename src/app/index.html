@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>wiki-guide</title>
-  <link rel="stylesheet" href="app.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-  <script src="bundle.js"></script>
-</head>
-<body>
-  <h1>hello adf dawg</h1>
-</body>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>wiki-guide</title>
+    <link rel="stylesheet" href="app.css">
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="js/components/main/mainCtrl.js"></script>
+    <script src="js/app.module.js"></script>
+  </head>
+  <body ng-app="wikiApp" ng-controller="mainCtrl">
+    <h1>{{test}}</h1>
+  </body>
 </html>

@@ -1,5 +1,5 @@
-import daBomb from './components/main/mainCtrl.js'
+var myApp = angular.module('wikiApp', []);
 
-console.log("hello pearl");
-
-daBomb("bino");
+myApp.controller('mainCtrl', ['$scope', function($scope) {
+  $scope.test = 'poop';
+}]);

@@ -1,3 +1,2 @@
-export default function(coolBeans) {
-  console.log(coolBeans);
-}
+'use strict';
+console.log("cool beans");
