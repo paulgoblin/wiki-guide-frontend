@@ -16,5 +16,5 @@ angular.module('wikiApp')
 
 .controller('mainCtrl', function($scope, $stateParams) {
   this.test = 'main penguin';
-  this.stateParams = $stateParams.login;
+  this.showLogin = $stateParams.login;
 });

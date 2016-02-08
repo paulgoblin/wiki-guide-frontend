@@ -12,7 +12,8 @@ a {
   color: $font-color;
 }
 
-@import "my_scss/global";
+@import "my_scss/bootstrap";
 @import "my_scss/global";
 @import "my_scss/mainPage";
 @import "my_scss/navBar";
+@import "my_scss/loginModal";

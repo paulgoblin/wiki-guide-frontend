@@ -1,0 +1,15 @@
+.loginModal {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  background: rgba(0,0,0,0.1);
+}
+.loginForm {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: $background-color;
+}
