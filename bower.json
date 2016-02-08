@@ -16,6 +16,7 @@
     "tests"
   ],
   "dependencies": {
-    "angular-ui-bootstrap": "^1.1.2"
+    "angular-ui-bootstrap": "^1.1.2",
+    "bootstrap-sass": "^3.3.6"
   }
 }

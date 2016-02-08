@@ -13,5 +13,6 @@ a {
 }
 
 @import "my_scss/global";
-@import "my_scss/main";
+@import "my_scss/global";
+@import "my_scss/mainPage";
 @import "my_scss/navBar";
