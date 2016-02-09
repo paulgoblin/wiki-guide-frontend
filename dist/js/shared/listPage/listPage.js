@@ -14,5 +14,5 @@ angular.module('wikiApp')
   }
 })
 .controller('listCtrl', function($scope, $stateParams) {
-  this.test = 'list penguin';
+  this.test = 'list page';
 });

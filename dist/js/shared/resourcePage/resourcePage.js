@@ -14,6 +14,6 @@ angular.module('wikiApp')
   }
 })
 .controller('resourceCtrl', function($scope, $stateParams) {
-  $scope.test = 'resource penguin';
+  $scope.test = 'resource page';
   $scope.resourceId = $stateParams.resourceId;
 });

@@ -12,7 +12,7 @@ a {
   color: $font-color;
 }
 
-@import "my_scss/bootstrap";
+@import "../assets/libs/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 @import "my_scss/global";
 @import "my_scss/mainPage";
 @import "my_scss/navBar";

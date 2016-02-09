@@ -5,6 +5,6 @@ angular.module('wikiApp', [
   'ui.router'
 ])
 
-.constant('ENV', {
+.constant('CONST', {
   API_URL: 'http://localhost:3000'
 })

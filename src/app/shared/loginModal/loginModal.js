@@ -6,7 +6,7 @@ angular.module('wikiApp')
     restrict: 'E',
     replace: true,
     controller: 'loginCtrl',
-    controllerAs: 'login',
+    controllerAs: 'lm',
     scope: true,
     bindToController: {
     },
@@ -14,6 +14,9 @@ angular.module('wikiApp')
   }
 })
 
-.controller('loginCtrl', function($scope, $stateParams) {
-  this.test = 'login penguin';
+.controller('loginCtrl', function($scope, $stateParams, API) {
+  var lm = this;
+  lm.submitLogin = (action, loginInfo) => {
+    API[action](loginInfo);
+  }
 });
