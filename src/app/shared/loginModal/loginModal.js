@@ -14,9 +14,9 @@ angular.module('wikiApp')
   }
 })
 
-.controller('loginCtrl', function($scope, $stateParams, API) {
+.controller('loginCtrl',function($scope, $stateParams, LoginSrvc) {
   var lm = this;
   lm.submitLogin = (action, loginInfo) => {
-    API[action](loginInfo);
+    LoginSrvc[action](loginInfo);
   }
 });

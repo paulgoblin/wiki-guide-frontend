@@ -2,7 +2,8 @@
 
 angular.module('wikiApp', [
   'ui.bootstrap',
-  'ui.router'
+  'ui.router',
+  'LocalStorageModule',
 ])
 
 .constant('CONST', {
