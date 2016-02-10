@@ -21,9 +21,8 @@ angular.module('wikiApp')
   $urlRouterProvider.otherwise('main');
 
 })
-.run(function (localStorageService, $location, $state) {
+.run(function (localStorageService, $location, $state,  $http) {
   var token = localStorageService.get('token') || '';
-  // var token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6IjU2YjgxZjM1Y2RkZjlhOTNkN2FhOTMwZSIsImlhdCI6MTQ1NTA2Mzk2MiwiZXhwIjoxNDU1NjY4NzYyLCJ1c2VybmFtZSI6InBhdWwifQ.J41C5LZgbxLDvXePySKZOwitpYe6Cil7pxHX9kpsL9Q';
 
   if (!token) {
     $state.go('main', {login: true});
@@ -36,9 +35,11 @@ angular.module('wikiApp')
     $state.go('main', {login: true})
     return localStorageService.remove('token')
   }
-  if (payload.exp < Date.now()*1000) {
+  if (payload.exp < Date.now()/1000) {
+    console.log("exp", payload.exp, Date.now()/1000);
     $state.go('main', {login: true})
     return localStorageService.remove('token')
   }
-
+  $http.defaults.headers.common.Authorization = token;
+  window.location.hash = window.location.hash.replace(/\?.*/,'')
 })

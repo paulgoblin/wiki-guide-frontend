@@ -14,10 +14,13 @@ angular.module('wikiApp')
   }
 })
 
-.controller('loginCtrl', function($scope, $stateParams, LoginSrvc) {
+.controller('loginCtrl', function($scope, $stateParams, $state, LoginSrvc) {
   var lm = this;
   lm.submitLogin = (loginInfo) => {
     LoginSrvc.login(loginInfo)
+      .success( resp => {
+        // $state.go('main');
+      })
       .error( err => {
         lm.loginAlert = err;
         console.log("error", err);

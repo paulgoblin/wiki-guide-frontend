@@ -3,27 +3,24 @@ angular.module('wikiApp')
 
 .service( 'LoginSrvc', function(CONST, $http, localStorageService) {
 
-  this.me = {};
-  this.token = localStorageService.get('token');
-
   this.login = (loginInfo) => {
     return $http.post(`${CONST.API_URL}/users/login`, loginInfo)
      .success( resp => {
-       updateToken(resp.data);
+       updateToken(resp);
      })
   }
 
   this.register = (registerInfo) => {
     return $http.post(`${CONST.API_URL}/users/register`, registerInfo)
      .success( resp => {
-       console.log("registered in", resp.data);
-       updateToken(resp.data);
+       updateToken(resp);
      })
   }
 
   var updateToken = (token) => {
-    this.token = 'Bearer ' + token;
-    localStorageService.set('token') = this.token;
+    console.log("updating token", token);
+    localStorageService.set('token', 'Bearer ' + token);
+    console.log("saved token", localStorageService.get('token'));
   }
 
 })
