@@ -20,7 +20,7 @@ angular.module('wikiApp')
   lm.submitLogin = (loginInfo) => {
     LoginSrvc.login(loginInfo)
       .success( resp => {
-        $state.go('main');
+        $state.go('main', {login: null});
       })
       .error( err => {
         lm.loginAlert = err;
@@ -30,7 +30,7 @@ angular.module('wikiApp')
   lm.submitRegister = (registerInfo) => {
     LoginSrvc.register(registerInfo)
       .success( resp => {
-        $state.go('main');
+        $state.go('main', {login: null});
       })
       .error( err => {
         lm.registerAlert = err;

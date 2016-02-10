@@ -21,8 +21,8 @@ angular.module('wikiApp')
   $urlRouterProvider.otherwise('main');
 
 })
-.run(function (localStorageService, $location, $state,  $http) {
-  var token = localStorageService.get('token') || '';
+.run(function (localStorageService, $state,  $http) {
+  let token = localStorageService.get('token') || '';
 
   if (!token) {
     $state.go('main', {login: true});

@@ -1,7 +1,7 @@
 'use strict';
 angular.module('wikiApp')
 
-.service( 'LoginSrvc', function(CONST, $http, localStorageService) {
+.service( 'LoginSrvc', function(CONST, $http, $rootScope, localStorageService) {
 
   this.token = localStorageService.get('token') || '';
 
@@ -19,11 +19,21 @@ angular.module('wikiApp')
      })
   }
 
-  var updateToken = (token) => {
-    console.log("updating token", token);
+  this.listen = (scope, callback) => {
+    let handler = $rootScope.$on('tokenChange', callback);
+    scope.$on('$destroy', handler);
+  }
+
+  let emit = () => {
+    $rootScope.$emit('tokenChange');
+  }
+
+  let updateToken = (token) => {
+    console.log("updating token");
     this.token = 'Bearer ' + token;
     localStorageService.set('token', 'Bearer ' + token);
-    console.log("saved token", localStorageService.get('token'));
+    $http.defaults.headers.common.Authorization = token;
+    emit();
   }
 
 })
