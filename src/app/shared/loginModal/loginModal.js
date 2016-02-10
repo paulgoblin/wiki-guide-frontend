@@ -14,9 +14,23 @@ angular.module('wikiApp')
   }
 })
 
-.controller('loginCtrl',function($scope, $stateParams, LoginSrvc) {
+.controller('loginCtrl', function($scope, $stateParams, LoginSrvc) {
   var lm = this;
-  lm.submitLogin = (action, loginInfo) => {
-    LoginSrvc[action](loginInfo);
+  lm.submitLogin = (loginInfo) => {
+    LoginSrvc.login(loginInfo)
+      .error( err => {
+        lm.loginAlert = err;
+        console.log("error", err);
+      })
   }
+  lm.submitRegister = (registerInfo) => {
+    LoginSrvc.register(registerInfo)
+      .error( err => {
+        lm.registerAlert = err;
+        console.log("error", err);
+      })
+  }
+  lm.closeLoginAlert = () =>  lm.loginAlert = null;
+  lm.closeRegisterAlert = () =>  lm.registerAlert = null;
+
 });

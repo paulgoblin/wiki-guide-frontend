@@ -1,22 +1,29 @@
 'use strict';
 angular.module('wikiApp')
 
-.service( 'LoginSrvc', function(CONST ,$http) {
+.service( 'LoginSrvc', function(CONST, $http, localStorageService) {
 
   this.me = {};
+  this.token = localStorageService.get('token');
 
   this.login = (loginInfo) => {
-    $http.post(`${CONST.API_URL}/users/login`, loginInfo)
-     .then( resp => {
-       console.log("hey you logged in", resp.data);
+    return $http.post(`${CONST.API_URL}/users/login`, loginInfo)
+     .success( resp => {
+       updateToken(resp.data);
      })
   }
 
   this.register = (registerInfo) => {
-    $http.post(`${CONST.API_URL}/users/register`, registerInfo)
-     .then( resp => {
-       console.log("hey you logged in", resp.data);
+    return $http.post(`${CONST.API_URL}/users/register`, registerInfo)
+     .success( resp => {
+       console.log("registered in", resp.data);
+       updateToken(resp.data);
      })
+  }
+
+  var updateToken = (token) => {
+    this.token = 'Bearer ' + token;
+    localStorageService.set('token') = this.token;
   }
 
 })
