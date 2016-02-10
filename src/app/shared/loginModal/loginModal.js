@@ -16,10 +16,11 @@ angular.module('wikiApp')
 
 .controller('loginCtrl', function($scope, $stateParams, $state, LoginSrvc) {
   var lm = this;
+  lm.token = LoginSrvc.token;
   lm.submitLogin = (loginInfo) => {
     LoginSrvc.login(loginInfo)
       .success( resp => {
-        // $state.go('main');
+        $state.go('main');
       })
       .error( err => {
         lm.loginAlert = err;
@@ -28,10 +29,16 @@ angular.module('wikiApp')
   }
   lm.submitRegister = (registerInfo) => {
     LoginSrvc.register(registerInfo)
+      .success( resp => {
+        $state.go('main');
+      })
       .error( err => {
         lm.registerAlert = err;
         console.log("error", err);
       })
+  }
+  lm.closeLoginModal = () => {
+    window.location.hash = window.location.hash.replace(/\?.*/,'')
   }
   lm.closeLoginAlert = () =>  lm.loginAlert = null;
   lm.closeRegisterAlert = () =>  lm.registerAlert = null;

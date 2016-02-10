@@ -3,7 +3,7 @@
   padding: 0 $global-gutter;
   border-bottom: 2px solid $light-font-color;
   .navBtn {
-    font-size: 36px;
+    font-size: $font-size-h3;
   }
   .navBtn:first-of-type {
     float:left;

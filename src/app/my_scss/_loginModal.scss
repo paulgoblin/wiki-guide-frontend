@@ -28,3 +28,15 @@
 .loginModal .alertBar {
   margin-top: 1em;
 }
+
+.loginCloseBtnContainer {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  &:hover {
+    color: $light-font-color;
+  }
+  i {
+    padding: 4px;
+  }
+}
