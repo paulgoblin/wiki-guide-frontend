@@ -21,7 +21,7 @@ angular.module('wikiApp')
   $urlRouterProvider.otherwise('main');
 
 })
-.run(function (localStorageService, $state,  $http) {
+.run(function (localStorageService, $state,  $http, UserSrvc) {
   let token = localStorageService.get('token') || '';
 
   if (!token) {
@@ -41,5 +41,6 @@ angular.module('wikiApp')
     return localStorageService.remove('token')
   }
   $http.defaults.headers.common.Authorization = token;
-  window.location.hash = window.location.hash.replace(/\?.*/,'')
+  window.location.hash = window.location.hash.replace(/\?.*/,'');
+  UserSrvc.getMe(payload.id);
 })

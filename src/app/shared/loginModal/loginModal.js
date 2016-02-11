@@ -15,6 +15,7 @@ angular.module('wikiApp')
 })
 
 .controller('loginCtrl', function($scope, $stateParams, $state, LoginSrvc) {
+
   var lm = this;
   lm.token = LoginSrvc.token;
   lm.submitLogin = (loginInfo) => {
@@ -42,5 +43,6 @@ angular.module('wikiApp')
   }
   lm.closeLoginAlert = () =>  lm.loginAlert = null;
   lm.closeRegisterAlert = () =>  lm.registerAlert = null;
+
 
 });

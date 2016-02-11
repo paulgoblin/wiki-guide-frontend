@@ -2,7 +2,7 @@
 angular.module('wikiApp')
 
 .service( 'UserSrvc', function(CONST, $http, $rootScope) {
-  this.me = {};
+  this.me = null;
 
   this.getMe = (meId) => {
     return $http.get(`${CONST.API_URL}/users/user/${meId}`)

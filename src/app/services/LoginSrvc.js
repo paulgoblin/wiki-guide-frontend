@@ -3,7 +3,13 @@ angular.module('wikiApp')
 
 .service( 'LoginSrvc', function(CONST, $http, $rootScope, localStorageService) {
 
-  this.token = localStorageService.get('token') || '';
+  this.token = localStorageService.get('token') || null;
+
+  this.logout = () => {
+    localStorageService.remove('token');
+    this.token = null;
+    emit();
+  }
 
   this.login = (loginInfo) => {
     return $http.post(`${CONST.API_URL}/users/login`, loginInfo)
