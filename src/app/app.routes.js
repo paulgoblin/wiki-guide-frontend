@@ -23,6 +23,7 @@ angular.module('wikiApp')
 })
 .run(function (localStorageService, $state,  $http, UserSrvc) {
   let token = localStorageService.get('token') || '';
+  UserSrvc.locate();
 
   if (!token) {
     $state.go('main', {login: true});

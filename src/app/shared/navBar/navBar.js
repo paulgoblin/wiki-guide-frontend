@@ -26,7 +26,7 @@ angular.module('wikiApp')
     UserSrvc.getMe(payload.id);
   })
   UserSrvc.listen('me', $scope, () => {
-    console.log("got me");
+    console.log("got me", UserSrvc.me);
     nb.me = UserSrvc.me;
   })
   nb.me = UserSrvc.me;

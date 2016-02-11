@@ -5,8 +5,8 @@ angular.module('wikiApp')
   return {
     restrict: 'E',
     replace: true,
-    controller: 'mainCtrl',
-    controllerAs: 'main',
+    controller: 'mainPageCtrl',
+    controllerAs: 'mp',
     scope: true,
     bindToController: {
     },
@@ -14,7 +14,8 @@ angular.module('wikiApp')
   }
 })
 
-.controller('mainCtrl', function($scope, $stateParams) {
-  this.test = 'main page';
-  this.showLogin = $stateParams.login;
+.controller('mainPageCtrl', function($scope, $stateParams) {
+  let mp = this;
+  mp.test = "mainPage"
+  mp.showLogin = $stateParams.login;
 });
