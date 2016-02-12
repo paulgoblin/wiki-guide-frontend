@@ -1,7 +1,29 @@
+@import "../assets/libs/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  &:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+  > .squareContent {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
 $background-color: #FDFDFD;
+$dark-background-color: #DDD;
 $font-color: #545454;
-$light-font-color: #D4D4D4;
-$global-gutter: 3em;
+$font-color-light: #D4D4D4;
+$global-gutter: .5em;
+$global-gutter-desktop: 3em;
 
 body {
   background: $background-color;
@@ -12,9 +34,9 @@ a {
   color: $font-color;
 }
 
-@import "../assets/libs/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 @import "my_scss/global";
 @import "my_scss/mainPage";
 @import "my_scss/navBar";
 @import "my_scss/loginModal";
 @import "my_scss/alertBar";
+@import "my_scss/deck";

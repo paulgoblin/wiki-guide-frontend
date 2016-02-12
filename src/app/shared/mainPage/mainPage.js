@@ -18,7 +18,9 @@ angular.module('wikiApp')
   let mp = this;
   mp.test = "mainPage"
   mp.showLogin = $stateParams.login;
+  mp.deck = {};
   UserSrvc.listen('deck', $scope, () => {
+    console.log("deck", UserSrvc.deck);
     mp.deck = UserSrvc.deck;
   })
 });

@@ -1,7 +1,7 @@
-.navBarDirective{
+#navBar{
   text-align: center;
   padding: 0 $global-gutter;
-  border-bottom: 2px solid $light-font-color;
+  border-bottom: 2px solid $font-color-light;
   .navBtn {
     font-size: $font-size-h3;
   }
@@ -10,5 +10,11 @@
   }
   .navBtn:last-of-type{
     float:right;
+  }
+}
+
+@media (min-width: $screen-md) {
+  #navBar {
+    padding: 0 $global-gutter-desktop;
   }
 }
