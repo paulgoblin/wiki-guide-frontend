@@ -17,6 +17,7 @@ angular.module('wikiApp')
 
 .controller('deckCtrl', function(UserSrvc, ResourceSrvc) {
   let dc = this;
+  this.deck = this.deck || [{}];
   dc.viewWell = (resource) => {
     ResourceSrvc.well = resource;
     $state.go('resource', {resourceId: resource._id});

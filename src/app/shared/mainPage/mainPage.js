@@ -20,9 +20,7 @@ angular.module('wikiApp')
   mp.deck = UserSrvc.deck;
   UserSrvc.listen('deck', $scope, () => {
     console.log("deck", UserSrvc.deck);
+    ResourceSrvc.handleNewDeck(UserSrvc.deck);
     mp.deck = UserSrvc.deck;
-    if (!ResourceSrvc.well) {
-      ResourceSrvc.well = mp.deck[0];
-    }
   })
 });
