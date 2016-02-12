@@ -5,15 +5,16 @@ angular.module('wikiApp')
   return {
     restrict: 'E',
     replace: true,
-    controller: 'resourceCtrl',
-    controllerAs: 'resource',
+    controller: 'resourcePageCtrl',
+    controllerAs: 'rp',
     scope: true,
     bindToController: {
     },
     templateUrl:'js/shared/resourcePage/resourcePage.html',
   }
 })
-.controller('resourceCtrl', function($scope, $stateParams) {
-  $scope.test = 'resource page';
-  $scope.resourceId = $stateParams.resourceId;
+.controller('resourcePageCtrl', function($scope, $stateParams, $sce, ResourceSrvc) {
+  let rp = this;
+  rp.well = ResourceSrvc.well;
+  rp.iframeUrl = $sce.trustAsResourceUrl(rp.well.info.url);
 });

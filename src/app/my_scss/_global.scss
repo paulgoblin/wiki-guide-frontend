@@ -6,6 +6,7 @@
 
 .viewPanel {
   padding: 0 $global-gutter;
+  height: calc(100vh - #{$nav-bar-height});
 }
 
 @media (min-width: $screen-md) {

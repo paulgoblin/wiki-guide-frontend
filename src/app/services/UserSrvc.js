@@ -75,6 +75,7 @@ angular.module('wikiApp')
 
   let changeInDistance = (newPosition) => {
     if (!us.coords.lat) return Infinity;
+    console.log("checking distance");
     // works for small changes in distance (< 1 degree);
     // 1 degree change equals about 69 miles at (0,0)
     let delx = (us.coords.long - newPosition.coords.longitude)*((180 - Math.abs(us.coords.lat))/180);

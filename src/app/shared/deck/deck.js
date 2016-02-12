@@ -17,7 +17,4 @@ angular.module('wikiApp')
 
 .controller('deckCtrl', function(UserSrvc) {
   let dc = this;
-  dc.getDeck = () => {
-    dc.deck = UserSrvc.deck;
-  }
 })
