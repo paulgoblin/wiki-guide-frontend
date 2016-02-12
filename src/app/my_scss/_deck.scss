@@ -1,5 +1,4 @@
 #deck {
-  border: 1px solid red;
 }
 
 .deckBtnContainer {
@@ -16,6 +15,9 @@
   text-align: center;
   i {
     font-size: 12vw;
+  }
+  &:hover {
+    background: $dark-background-color;
   }
 }
 

@@ -4,7 +4,9 @@
 }
 
 .topCard {
-  min-height: 60vh;
+  position: relative;
+  overflow: hidden;
+  height: 60vh;
 }
 
 .card .panel {
@@ -12,13 +14,20 @@
 }
 
 .cardContent {
+  height: 100%;
   text-align: center;
+  overflow: hidden;
   h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
     font-family: "Georgia", Times, serif;
   }
+  img {
+    height: 55%;
+  }
   p {
+    height: 20%;
     position: absolute;
     bottom: 0;
-    padding: 2em;
+    padding: 1em;
   }
 }
