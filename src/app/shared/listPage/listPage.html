@@ -10,10 +10,10 @@
     <ul class="list-group likesList">
       <li ng-repeat="resource in lp.me.likes"
       ng-click="viewResource($index)" class="likesListItem list-group-item">
-        <span ui-sref="resource({resourceId: resource._id})">
+        <span>
           {{resource.info.title}}
         </span>
-        <i class="fa fa-wikipedia-w"></i>
+        <i class="fa fa-wikipedia-w" ui-sref="resource({resourceId: resource._id})"></i>
       </li>
     </ul>
   </div>

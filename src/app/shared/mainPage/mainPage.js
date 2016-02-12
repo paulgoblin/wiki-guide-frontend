@@ -19,8 +19,6 @@ angular.module('wikiApp')
   mp.showLogin = $stateParams.login;
   mp.deck = UserSrvc.deck;
   UserSrvc.listen('deck', $scope, () => {
-    console.log("deck", UserSrvc.deck);
-    ResourceSrvc.handleNewDeck(UserSrvc.deck);
     mp.deck = UserSrvc.deck;
   })
 });

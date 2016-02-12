@@ -19,9 +19,5 @@ angular.module('wikiApp')
   rp.well = ResourceSrvc.well;
   console.log("ResourceSrvc well", ResourceSrvc.well);
   rp.iframeUrl = $sce.trustAsResourceUrl(rp.well ? rp.well.info.url : defaultUrl);
-
-  UserSrvc.listen('deck', $scope, () => {
-    ResourceSrvc.handleNewDeck(UserSrvc.deck);
-  })
-
+  
 });

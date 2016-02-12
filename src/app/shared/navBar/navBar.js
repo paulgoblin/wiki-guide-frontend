@@ -13,7 +13,7 @@ angular.module('wikiApp')
     templateUrl:'js/shared/navBar/navBar.html',
   }
 })
-.controller('navBarCtrl', function(LoginSrvc, UserSrvc, $scope, $state) {
+.controller('navBarCtrl', function(LoginSrvc, UserSrvc, ResourceSrvc, $scope, $state) {
   let nb = this;
   nb.logout = () => {
     LoginSrvc.logout();
@@ -26,8 +26,10 @@ angular.module('wikiApp')
     UserSrvc.getMe(payload.id);
   })
   UserSrvc.listen('me', $scope, () => {
-    console.log("got me", UserSrvc.me);
     nb.me = UserSrvc.me;
+  })
+  UserSrvc.listen('deck', $scope, () => {
+    ResourceSrvc.handleNewDeck(UserSrvc.deck);
   })
   nb.me = UserSrvc.me;
 })
