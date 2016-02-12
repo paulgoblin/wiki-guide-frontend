@@ -2,19 +2,19 @@
 angular.module('wikiApp')
 
 .service( 'UserSrvc', function(CONST, $http, $rootScope) {
+  let refreshDist = 1; //miles
   let us = this;
   us.me = null;
-  us.coords = null;
+  us.coords = { lat: null, long: null };
   us.locationWatcher = null;
   us.deck = null;
 
   us.locate = () => {
     if ("geolocation" in navigator){
       navigator.geolocation.clearWatch(us.locationWatcher);
-      us.locationWatcher = navigator.geolocation.watchPosition((position) => {
-        console.log("watchPosition", position);
-        updateCoords(position);
-        us.getNewDeck();
+      us.locationWatcher = navigator.geolocation.watchPosition((newPosition) => {
+        if (changeInDistance(newPosition) < refreshDist) return;
+        updateCoords(newPosition);
       }, (err) => {
         console.log("couldn't find geolocation", err);
       });
@@ -25,7 +25,6 @@ angular.module('wikiApp')
     return $http.get(`${CONST.API_URL}/users/user/${meId}`)
       .success( resp => {
         updateMe(resp);
-        us.getNewDeck();
       })
       .error( err => {
         updateMe(null);
@@ -33,10 +32,11 @@ angular.module('wikiApp')
   }
 
   us.getNewDeck = () => {
-    if (!us.me || !us.coords) return;
-    return $http.get(`${CONST.API_URL}/users/user/${us.me._id}`)
+    if (!us.me || !us.coords.lat) return;
+    return $http.post(`${CONST.API_URL}/resources/getDeck/${CONST.SEARCH_RAD}`,
+    {loc: us.coords, user: us.me})
       .success( resp => {
-        console.log("got a new deck", resp);
+        updateDeck(resp);
       })
       .error( err => {
         console.log("error getting deck", err);
@@ -54,6 +54,7 @@ angular.module('wikiApp')
 
   let updateMe = (me) => {
     us.me = me;
+    us.getNewDeck();
     emit('me');
   }
 
@@ -61,9 +62,25 @@ angular.module('wikiApp')
     if (!position) return us.coords = null;
     us.coords = {
       lat: position.coords.latitude,
-      lang: position.coords.longitude,
+      long: position.coords.longitude,
     };
+    us.getNewDeck();
     emit('coords');
+  }
+
+  let updateDeck = (deck) => {
+    us.deck = deck;
+    emit('deck');
+  }
+
+  let changeInDistance = (newPosition) => {
+    if (!us.coords.lat) return Infinity;
+    // works for small changes in distance (< 1 degree);
+    // 1 degree change equals about 69 miles at (0,0)
+    let delx = (us.coords.long - newPosition.coords.longitude)*((180 - Math.abs(us.coords.lat))/180);
+    let dely = us.coords.lat - newPosition.coords.latitude;
+    let change = Math.sqrt(Math.pow(delx,2) - Math.pow(dely,2))*69;
+    return change
   }
 
 })

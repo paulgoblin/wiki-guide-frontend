@@ -14,8 +14,11 @@ angular.module('wikiApp')
   }
 })
 
-.controller('mainPageCtrl', function($scope, $stateParams) {
+.controller('mainPageCtrl', function($scope, $stateParams, UserSrvc) {
   let mp = this;
   mp.test = "mainPage"
   mp.showLogin = $stateParams.login;
+  UserSrvc.listen('deck', $scope, () => {
+    mp.deck = UserSrvc.deck;
+  })
 });

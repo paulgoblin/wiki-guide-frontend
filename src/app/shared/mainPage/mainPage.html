@@ -1,8 +1,9 @@
 <div id="mainPage" class="container">
   <nav-bar></nav-bar>
   <div id="mainPanel" class="viewPanel">
-    <h1>{{mp.test}}</h1>
+    <ul>
+      <li ng-repeat="card in mp.deck">{{card.info.title}}</li>
+    </ul>
   </div>
-
   <login-modal ng-if="mp.showLogin"></login-modal>
 </div>
