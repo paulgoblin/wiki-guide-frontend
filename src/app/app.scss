@@ -1,22 +1,5 @@
 @import "../assets/libs/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
-
-@mixin aspect-ratio($width, $height) {
-  position: relative;
-  &:before {
-    display: block;
-    content: "";
-    width: 100%;
-    padding-top: ($height / $width) * 100%;
-  }
-  > .squareContent {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    left: 0;
-    right: 0;
-    bottom: 0;
-  }
-}
+@import "my_scss/mixins";
 
 $background-color: #FDFDFD;
 $dark-background-color: #DDD;
@@ -24,6 +7,7 @@ $font-color: #545454;
 $font-color-light: #D4D4D4;
 $global-gutter: .5em;
 $global-gutter-desktop: 3em;
+$nav-bar-height: 36px;
 
 body {
   background: $background-color;
@@ -40,3 +24,4 @@ a {
 @import "my_scss/loginModal";
 @import "my_scss/alertBar";
 @import "my_scss/deck";
+@import "my_scss/card";
