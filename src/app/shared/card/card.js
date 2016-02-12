@@ -1,14 +1,15 @@
 'use strict';
 angular.module('wikiApp')
 
-.directive('card', function(){
+.directive('cardDirective', function(){
   return {
     restrict: 'A',
     controller: 'cardCtrl',
     controllerAs: 'cc',
     scope: true,
     bindToController: {
-      resource: "="
+      resource: "=",
+      test: "@"
     },
     templateUrl:'js/shared/card/card.html',
   }

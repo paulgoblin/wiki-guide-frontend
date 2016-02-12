@@ -1,5 +1,6 @@
 .card {
-  margin: 1em;
+    margin: 1em 0;
+    padding: 0;
 }
 
 .topCard {
@@ -8,4 +9,16 @@
 
 .card .panel {
     margin: 0 5px 5px 0;
+}
+
+.cardContent {
+  text-align: center;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Georgia", Times, serif;
+  }
+  p {
+    position: absolute;
+    bottom: 0;
+    padding: 2em;
+  }
 }
