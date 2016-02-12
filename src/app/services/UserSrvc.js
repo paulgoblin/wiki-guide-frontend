@@ -48,6 +48,17 @@ angular.module('wikiApp')
     scope.$on('$destroy', handler);
   }
 
+  us.like = (resource) => {
+    us.me.likes.push(resource);
+    let resI = us.deck.indexOf(resource);
+    if (resI !== -1) us.deck.splice(resI, 1);
+  }
+  us.strike = (resource) => {
+    us.me.strikes.push(resource._id);
+    let resI = us.deck.indexOf(resource);
+    if (resI !== -1) us.deck.splice(resI, 1);
+  }
+
   let emit = (eventName) => {
     $rootScope.$emit(eventName);
   }
@@ -75,13 +86,14 @@ angular.module('wikiApp')
 
   let changeInDistance = (newPosition) => {
     if (!us.coords.lat) return Infinity;
-    console.log("checking distance");
     // works for small changes in distance (< 1 degree);
     // 1 degree change equals about 69 miles at (0,0)
     let delx = (us.coords.long - newPosition.coords.longitude)*((180 - Math.abs(us.coords.lat))/180);
     let dely = us.coords.lat - newPosition.coords.latitude;
+    console.log("delx, dely", delx, dely);
     let change = Math.sqrt(Math.pow(delx,2) - Math.pow(dely,2))*69;
-    return change
+    console.log("checking distance", change, us.coords, newPosition);
+    return isNaN(change) ? Infinity : change;
   }
 
 })

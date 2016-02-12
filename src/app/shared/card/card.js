@@ -8,8 +8,7 @@ angular.module('wikiApp')
     controllerAs: 'cc',
     scope: true,
     bindToController: {
-      resource: "=",
-      test: "@"
+      info: "=",
     },
     templateUrl:'js/shared/card/card.html',
   }

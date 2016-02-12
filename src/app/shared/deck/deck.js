@@ -15,6 +15,18 @@ angular.module('wikiApp')
   }
 })
 
-.controller('deckCtrl', function(UserSrvc) {
+.controller('deckCtrl', function(UserSrvc, ResourceSrvc) {
   let dc = this;
+  dc.viewWell = (resource) => {
+    ResourceSrvc.well = resource;
+    $state.go('resource', {resourceId: resource._id});
+  }
+  dc.strike = (resource) => {
+    ResourceSrvc.addStrike(resource);
+    UserSrvc.strike(resource);
+  }
+  dc.like = (resource) => {
+    ResourceSrvc.addLike(resource);
+    UserSrvc.like(resource);
+  }
 })

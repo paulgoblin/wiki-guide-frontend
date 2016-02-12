@@ -18,11 +18,6 @@ angular.module('wikiApp')
   let mp = this;
   mp.showLogin = $stateParams.login;
   mp.deck = UserSrvc.deck;
-  mp.viewWell = (resource) => {
-    ResourceSrvc.well = resource;
-    $state.go('resource', {resourceId: resource._id});
-  }
-
   UserSrvc.listen('deck', $scope, () => {
     console.log("deck", UserSrvc.deck);
     mp.deck = UserSrvc.deck;
