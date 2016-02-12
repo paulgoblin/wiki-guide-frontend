@@ -5,14 +5,18 @@ angular.module('wikiApp')
   return {
     restrict: 'E',
     replace: true,
-    controller: 'listCtrl',
-    controllerAs: 'list',
+    controller: 'listPageCtrl',
+    controllerAs: 'lp',
     scope: true,
     bindToController: {
     },
     templateUrl:'js/shared/listPage/listPage.html',
   }
 })
-.controller('listCtrl', function($scope, $stateParams) {
-  this.test = 'list page';
+.controller('listPageCtrl', function($scope, $stateParams, UserSrvc) {
+  let lp = this;
+  lp.me = UserSrvc.me || { likes: [] };
+  UserSrvc.listen('me', $scope, () => {
+    lp.me = UserSrvc.me;
+  })
 });

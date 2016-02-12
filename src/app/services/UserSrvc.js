@@ -13,8 +13,7 @@ angular.module('wikiApp')
     if ("geolocation" in navigator){
       navigator.geolocation.clearWatch(us.locationWatcher);
       us.locationWatcher = navigator.geolocation.watchPosition((newPosition) => {
-        if (changeInDistance(newPosition) < refreshDist) return;
-        updateCoords(newPosition);
+        if (changeInDistance(newPosition) > refreshDist) updateCoords(newPosition);
       }, (err) => {
         console.log("couldn't find geolocation", err);
       });
@@ -52,11 +51,13 @@ angular.module('wikiApp')
     us.me.likes.push(resource);
     let resI = us.deck.indexOf(resource);
     if (resI !== -1) us.deck.splice(resI, 1);
+    emit('me');
   }
   us.strike = (resource) => {
     us.me.strikes.push(resource._id);
     let resI = us.deck.indexOf(resource);
     if (resI !== -1) us.deck.splice(resI, 1);
+    emit('me');
   }
 
   let emit = (eventName) => {
@@ -93,7 +94,7 @@ angular.module('wikiApp')
     console.log("delx, dely", delx, dely);
     let change = Math.sqrt(Math.pow(delx,2) - Math.pow(dely,2))*69;
     console.log("checking distance", change, us.coords, newPosition);
-    return isNaN(change) ? Infinity : change;
+    return change;
   }
 
 })
