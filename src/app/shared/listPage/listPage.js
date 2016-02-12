@@ -19,4 +19,7 @@ angular.module('wikiApp')
   UserSrvc.listen('me', $scope, () => {
     lp.me = UserSrvc.me;
   })
+  lp.select = (index) => {
+    lp.selected = index;
+  }
 });
