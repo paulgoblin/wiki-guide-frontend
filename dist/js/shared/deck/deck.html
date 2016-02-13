@@ -1,6 +1,6 @@
-<div id="deck">
+<div id="deck" ng-if="dc.deck[0].info">
   <div card-directive info="dc.deck[0].info" class="card col-xs-12 col-md-8 col-md-offset-2 col-lg-6 col-md-offset-3"></div>
-  <div ng-show="dc.deck[0].info" class="deckBtnContainer">
+  <div class="deckBtnContainer">
     <div ng-click="dc.strike(dc.deck[0])" class="strikeBtn deckBtn"><i class="fa fa-times squareContent"></i></div>
 
     <div ng-click="dc.viewWell(dc.deck[0])" class="viewResourceBtn deckBtn"><i class="fa fa-search squareContent"></i></div>

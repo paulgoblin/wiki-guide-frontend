@@ -23,11 +23,11 @@ angular.module('wikiApp')
     $state.go('resource', {resourceId: resource._id});
   }
   dc.strike = (resource) => {
-    ResourceSrvc.addStrike(resource);
-    UserSrvc.strike(resource);
+    // only update server if local array of strikes updates
+    UserSrvc.strike(resource) && ResourceSrvc.addStrike(resource);
   }
   dc.like = (resource) => {
-    ResourceSrvc.addLike(resource);
-    UserSrvc.like(resource);
+    // only update server if local array of likes updates
+    UserSrvc.like(resource) && ResourceSrvc.addLike(resource);
   }
 })

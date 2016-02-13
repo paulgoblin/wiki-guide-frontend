@@ -14,9 +14,9 @@ angular.module('wikiApp')
   }
 
   this.addLike = (resource) => {
+    console.log("adding like");
     return $http.post(`${CONST.API_URL}/users/likeResource/${resource._id}`)
       .success( resp => {
-        console.log("liking", resp);
       })
       .error( err => {
         console.log("error liking", err);
@@ -26,7 +26,6 @@ angular.module('wikiApp')
   this.addStrike = (resource) => {
     return $http.post(`${CONST.API_URL}/users/strikeResource/${resource._id}`)
       .success( resp => {
-        console.log("striking", resp);
       })
       .error( err => {
         console.log("error striking", err);
