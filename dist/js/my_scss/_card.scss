@@ -1,6 +1,7 @@
 .card {
-    margin: 1em 0;
-    padding: 0;
+  margin: 1em auto;
+  padding: 0 1em;
+  max-width: 600px;
 }
 
 .topCard {
@@ -29,5 +30,6 @@
     position: absolute;
     bottom: 0;
     padding: 1em;
+    background: $background-color;
   }
 }

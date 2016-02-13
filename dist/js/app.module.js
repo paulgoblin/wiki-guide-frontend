@@ -7,8 +7,8 @@ angular.module('wikiApp', [
 ])
 
 .constant('CONST', {
-  // API_URL: 'http://desolate-sea-75202.herokuapp.com',
-  API_URL: 'http://localhost:3000',
+  API_URL: 'http://desolate-sea-75202.herokuapp.com',
+  // API_URL: 'http://localhost:3000',
   SEARCH_RAD: '10',  // miles
 })
 

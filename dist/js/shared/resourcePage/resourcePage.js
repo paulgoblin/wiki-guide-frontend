@@ -17,7 +17,6 @@ angular.module('wikiApp')
   let rp = this;
   let defaultUrl = "https://www.wikipedia.org/"
   rp.well = ResourceSrvc.well;
-  console.log("ResourceSrvc well", ResourceSrvc.well);
   rp.iframeUrl = $sce.trustAsResourceUrl(rp.well ? rp.well.info.url : defaultUrl);
 
 });
