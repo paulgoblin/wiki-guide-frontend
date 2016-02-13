@@ -13,7 +13,7 @@
         <span>
           {{resource.info.title}}
         </span>
-        <i class="fa fa-wikipedia-w" ui-sref="resource({resourceId: resource._id})"></i>
+        <i class="fa fa-wikipedia-w" ng-click="lp.viewResource(resource)"></i>
       </li>
     </ul>
   </div>

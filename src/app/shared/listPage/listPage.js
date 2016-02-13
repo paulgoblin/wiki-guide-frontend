@@ -13,13 +13,14 @@ angular.module('wikiApp')
     templateUrl:'js/shared/listPage/listPage.html',
   }
 })
-.controller('listPageCtrl', function($scope, $stateParams, UserSrvc) {
+.controller('listPageCtrl', function($scope, $state, UserSrvc, ResourceSrvc) {
   let lp = this;
   lp.me = UserSrvc.me || { likes: [] };
   UserSrvc.listen('me', $scope, () => {
     lp.me = UserSrvc.me;
   })
-  lp.select = (index) => {
-    lp.selected = index;
+  lp.viewResource = (resource) => {
+    ResourceSrvc.setWell(resource);
+    $state.go('resource', {resourceId: resource._id});
   }
 });

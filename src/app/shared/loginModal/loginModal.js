@@ -14,7 +14,7 @@ angular.module('wikiApp')
   }
 })
 
-.controller('loginCtrl', function($scope, $stateParams, $state, LoginSrvc) {
+.controller('loginCtrl', function($scope, $state, LoginSrvc) {
 
   var lm = this;
   lm.token = LoginSrvc.token;

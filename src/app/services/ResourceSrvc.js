@@ -9,6 +9,10 @@ angular.module('wikiApp')
     this.well = deck[0];
   }
 
+  this.setWell = (resource) => {
+    this.well = resource;
+  }
+
   this.addStrike = (resource) => {
     // call to API
 
