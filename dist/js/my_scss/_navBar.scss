@@ -1,0 +1,21 @@
+#navBar{
+  height: $nav-bar-height;
+  text-align: center;
+  padding: 0 $global-gutter;
+  border-bottom: 2px solid $font-color-light;
+  .navBtn {
+    font-size: $font-size-h3;
+  }
+  .navBtn:first-of-type {
+    float:left;
+  }
+  .navBtn:last-of-type{
+    float:right;
+  }
+}
+
+@media (min-width: $screen-md) {
+  #navBar {
+    padding: 0 $global-gutter-desktop;
+  }
+}
