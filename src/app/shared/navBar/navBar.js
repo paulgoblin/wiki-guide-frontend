@@ -21,6 +21,7 @@ angular.module('wikiApp')
   }
   LoginSrvc.listen($scope, () => {
     let token = LoginSrvc.token;
+    console.log("got a new token", token);
     if (!token) return;
     let payload = JSON.parse(atob(token.split('.')[1]));
     UserSrvc.getMe(payload.id);

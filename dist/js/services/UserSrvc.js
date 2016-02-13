@@ -23,6 +23,7 @@ angular.module('wikiApp')
   us.getMe = (meId) => {
     return $http.get(`${CONST.API_URL}/users/user/${meId}`)
       .success( resp => {
+        console.log("got me!", resp);
         updateMe(resp);
       })
       .error( err => {
