@@ -1,6 +1,7 @@
 <div id="mainPage" class="page">
   <div id="mainPanel" class="viewPanel">
-    <deck deck="mp.deck"></deck>
+    <div ng-hide="mp.deck" class="spinner"></div>
+    <deck ng-if="mp.deck[0].info" deck="mp.deck"></deck>
   </div>
   <login-modal ng-if="mp.showLogin"></login-modal>
 </div>
