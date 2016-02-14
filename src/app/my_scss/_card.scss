@@ -35,6 +35,14 @@ $card-margin-bottom: 5px;
     padding-top:0.5em ;
     background: $background-color;
   }
+  .dist {
+    position: absolute;
+    top: 2px;
+    right: 10px;
+    font-weight: bold;
+    font-size: small;
+    color: $font-color-light;
+  }
 }
 
 .movingCard {
@@ -44,5 +52,4 @@ $card-margin-bottom: 5px;
   right: $card-margin-right;
   bottom: $card-margin-bottom;
   left: 0;
-
 }

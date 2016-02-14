@@ -101,7 +101,7 @@ angular.module('wikiApp')
     if (!us.coords.lat) return Infinity;
     let delx = (us.coords.long - newPosition.coords.longitude)*((180 - Math.abs(us.coords.lat))/180);
     let dely = us.coords.lat - newPosition.coords.latitude;
-    let change = Math.sqrt(Math.pow(delx,2) - Math.pow(dely,2))*69;
+    let change = Math.sqrt(Math.abs(Math.pow(delx,2) - Math.pow(dely,2)))*69;
     return change;
   }
 
