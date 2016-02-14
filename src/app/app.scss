@@ -1,17 +1,24 @@
 @import "../assets/libs/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 @import "my_scss/mixins";
 
-$background-color: #FDFDFD;
-$dark-background-color: #DDD;
-$font-color: #545454;
-$font-color-light: #D4D4D4;
+// sizes
+$max-body-width: 700px;
 $global-gutter: .5em;
 $global-gutter-desktop: 3em;
 $nav-bar-height: 36px;
 
+// colors
+$background-color: #FDFDFD;
+$dark-background-color: #DDD;
+$font-color: #545454;
+$font-color-light: #D4D4D4;
+
+
 body {
   background: $background-color;
   color: $font-color;
+  max-width: $max-body-width;
+  margin: auto;
 }
 
 a {
