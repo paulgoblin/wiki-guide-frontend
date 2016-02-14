@@ -33,8 +33,8 @@ angular.module('wikiApp')
     ResourceSrvc.handleNewDeck(UserSrvc.deck);
   })
   nb.me = UserSrvc.me;
-  nb.selected = window.location.hash.split('/')[1];;
-  nb.updateSelectedLoc = (loc) => {
-    nb.selected = loc
-  }
+  nb.selected = window.location.hash.split('/')[1];
+  window.addEventListener('hashchange', (loc) => {
+    nb.selected = window.location.hash.split('/')[1]
+  });
 })
