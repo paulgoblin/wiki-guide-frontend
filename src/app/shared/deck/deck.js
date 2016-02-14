@@ -15,8 +15,10 @@ angular.module('wikiApp')
   }
 })
 
-.controller('deckCtrl', function($state, UserSrvc, ResourceSrvc) {
+.controller('deckCtrl', function($state, UserSrvc, ResourceSrvc, $timeout) {
   let dc = this;
+
+  let animationTime = 0.34;  // seconds
   this.deck = this.deck || [{}];
   dc.movingCard = null;
 
@@ -25,15 +27,24 @@ angular.module('wikiApp')
     $state.go('resource', {resourceId: resource._id});
   }
   dc.like = (resource) => {
+    if (dc.movingCard) return;
+    movingCardTimeout();
     dc.liked = true;
     dc.movingCard = angular.copy(resource);
-    // only update server if local array of likes updates
     UserSrvc.like(resource) && ResourceSrvc.addLike(resource);
   }
   dc.strike = (resource) => {
+    if (dc.movingCard) return;
+    movingCardTimeout();
     dc.liked = false;
     dc.movingCard = angular.copy(resource);
-    // only update server if local array of strikes updates
     UserSrvc.strike(resource) && ResourceSrvc.addStrike(resource);
   }
+
+  let movingCardTimeout = () => {
+    $timeout(()=> {
+      dc.movingCard = null;
+    }, animationTime*1000 )
+  }
+
 })

@@ -14,5 +14,5 @@ angular.module('wikiApp')
   }
 })
 
-.controller('cardCtrl', function() {
+.controller('cardCtrl', function($scope) {
 })
