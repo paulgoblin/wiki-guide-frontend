@@ -2,55 +2,61 @@
   max-width: 600px;
   margin: auto;
   padding-top: 1em;
-}
 
-.deckBtnContainer {
-  max-width: 600px;
-  margin: auto;
-}
+  .preload {
+    width: 0px;
+    height: 0px;;
+  }
 
-.deckBtn {
-  width: 25%;
-  @include aspect-ratio(1,1)
-  float: left;
-  border-radius: 9999px;
-  border: 1px solid $dark-background-color;
-  text-align: center;
-  i {
-    font-size: 12vw;
+  .deckBtnContainer {
+    max-width: 600px;
+    margin: auto;
   }
-  &:hover {
-    background: $dark-background-color;
-  }
-}
 
-.strikeBtn {
-  margin-left: 8.333333%;
-  margin-top: 4.1%;
-  color: #CB0000;
-}
-.likeBtn {
-  color: #198B66;
-  margin-top: 4.1%;
-  margin-right: 8.333333%;
-}
+  .deckBtn {
+    width: 25%;
+    @include aspect-ratio(1,1)
+    float: left;
+    border-radius: 9999px;
+    border: 1px solid $dark-background-color;
+    text-align: center;
+    i {
+      font-size: 12vw;
+    }
+    &:hover {
+      background: $dark-background-color;
+    }
+  }
 
-.viewResourceBtn {
-  color: $font-color;
-  width: 33.33333333%;
-  height: 33.33333333%;
-  i {
-    line-height: 55%;
-    font-size: 20vw;
+  .strikeBtn {
+    margin-left: 8.333333%;
+    margin-top: 4.1%;
+    color: #CB0000;
   }
-}
+  .likeBtn {
+    color: #198B66;
+    margin-top: 4.1%;
+    margin-right: 8.333333%;
+  }
 
-@media (min-width: 645px) {
-  .deckBtn i {
-    font-size: 5.4em;
+  .viewResourceBtn {
+    color: $font-color;
+    width: 33.33333333%;
+    height: 33.33333333%;
+    i {
+      line-height: 55%;
+      font-size: 20vw;
+    }
   }
-  .viewResourceBtn i {
-    line-height: .6em;
-    font-size: 8.7em;
+
+  @media (min-width: 645px) {
+    .deckBtn i {
+      font-size: 5.4em;
+    }
+    .viewResourceBtn i {
+      line-height: .6em;
+      font-size: 8.7em;
+    }
   }
+
 }
