@@ -21,6 +21,7 @@ angular.module('wikiApp')
   let animationTime = 0.34;  // seconds
   this.deck = this.deck || [{}];
   dc.movingCard = null;
+  // dc.preLoad = this.deck[1] ? this.deck[1].info.imgUrl : '';
 
   dc.viewWell = (resource) => {
     ResourceSrvc.well = resource;

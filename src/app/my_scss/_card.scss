@@ -27,9 +27,11 @@ $card-margin-bottom: 5px;
   }
   p {
     height: 20%;
+    width: 100%;
     position: absolute;
     bottom: 0;
-    padding: 1em;
+    padding: 0.5em 1em;
+    background: $background-color;
   }
 }
 
