@@ -18,16 +18,22 @@ angular.module('wikiApp')
 .controller('deckCtrl', function($state, UserSrvc, ResourceSrvc) {
   let dc = this;
   this.deck = this.deck || [{}];
+
+  dc.liked = '';
+  dc.striked = '';
+
   dc.viewWell = (resource) => {
     ResourceSrvc.well = resource;
     $state.go('resource', {resourceId: resource._id});
   }
-  dc.strike = (resource) => {
-    // only update server if local array of strikes updates
-    UserSrvc.strike(resource) && ResourceSrvc.addStrike(resource);
-  }
   dc.like = (resource) => {
+    dc.liked = true;
     // only update server if local array of likes updates
-    UserSrvc.like(resource) && ResourceSrvc.addLike(resource);
+    // UserSrvc.like(resource) && ResourceSrvc.addLike(resource);
+  }
+  dc.strike = (resource) => {
+    dc.striked = true;
+    // only update server if local array of strikes updates
+    // UserSrvc.strike(resource) && ResourceSrvc.addStrike(resource);
   }
 })

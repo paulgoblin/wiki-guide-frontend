@@ -1,5 +1,9 @@
 <div id="deck" ng-if="dc.deck[0].info">
-  <div card-directive info="dc.deck[0].info" class="card"></div>
+  <div card-directive
+       info="dc.deck[0].info"
+       liked='{{dc.liked}}'
+       striked='{{dc.striked}}'
+       class="card"></div>
   <div class="deckBtnContainer">
     <div ng-click="dc.strike(dc.deck[0])" class="strikeBtn deckBtn"><i class="fa fa-times squareContent"></i></div>
 

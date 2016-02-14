@@ -1,6 +1,9 @@
 <div class="panel">
   <div class="panel">
-    <div class="panel topCard">
+    {{cc.striked}}
+    {{cc.liked}}
+    <div class="panel topCard animated"
+      ng-class="{ 'slideOutRight' : cc.liked, 'slideOutLeft' : cc.striked }" }}>
       <div class="cardContent">
         <h2>{{cc.info.title}}</h2>
         <img ng-src="{{cc.info.imgUrl}}" alt="">

@@ -9,6 +9,8 @@ angular.module('wikiApp')
     scope: true,
     bindToController: {
       info: "=",
+      liked: '@',
+      striked: '@',
     },
     templateUrl:'js/shared/card/card.html',
   }
