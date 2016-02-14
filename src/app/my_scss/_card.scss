@@ -16,6 +16,7 @@ $card-margin-bottom: 5px;
 
 .cardContent {
   height: 100%;
+  padding: 1em 1em 0 1em;
   text-align: center;
   overflow: hidden;
   h1, h2, h3, h4, h5, h6 {
@@ -24,13 +25,13 @@ $card-margin-bottom: 5px;
   }
   img {
     height: 55%;
+    max-width: 100%;
   }
   p {
     height: 20%;
     width: 100%;
-    position: absolute;
     bottom: 0;
-    padding: 0.5em 1em;
+    padding-top:0.5em ;
     background: $background-color;
   }
 }
