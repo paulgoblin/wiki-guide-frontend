@@ -8,14 +8,11 @@ angular.module('wikiApp')
     controllerAs: 'cc',
     scope: true,
     bindToController: {
-      info: "=",
-      liked: '@',
-      striked: '@',
+      info: "="
     },
     templateUrl:'js/shared/card/card.html',
   }
 })
 
 .controller('cardCtrl', function() {
-  let cc = this;
 })

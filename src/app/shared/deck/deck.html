@@ -1,9 +1,18 @@
 <div id="deck" ng-if="dc.deck[0].info">
-  <div card-directive
-       info="dc.deck[0].info"
-       liked='{{dc.liked}}'
-       striked='{{dc.striked}}'
-       class="card"></div>
+  <div class="card panel panel-default">
+    <div class="card panel panel-default">
+      <div class="movingCard panel panel-default topCard animated"
+           ng-if="dc.movingCard"
+           card-directive
+           info="dc.movingCard.info"
+           ng-class=" dc.liked ? 'slideOutRight' : 'slideOutLeft' ">
+       </div>
+      <div class="card panel panel-default topCard"
+           card-directive
+           info="dc.deck[0].info">
+       </div>
+     </div>
+   </div>
   <div class="deckBtnContainer">
     <div ng-click="dc.strike(dc.deck[0])" class="strikeBtn deckBtn"><i class="fa fa-times squareContent"></i></div>
 
