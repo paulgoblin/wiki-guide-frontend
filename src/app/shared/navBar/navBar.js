@@ -24,7 +24,7 @@ angular.module('wikiApp')
     console.log("got a new token", token);
     if (!token) return;
     let payload = JSON.parse(atob(token.split('.')[1]));
-    UserSrvc.getMe(payload.id);
+    UserSrvc.requestMe(payload.id, UserSrvc.requestDeck());
   })
   UserSrvc.listen('me', $scope, () => {
     nb.me = UserSrvc.me;

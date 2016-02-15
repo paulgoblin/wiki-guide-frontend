@@ -1,8 +1,8 @@
 'use strict';
 angular.module('wikiApp')
 
-.service( 'UserSrvc', function(CONST, $http, $rootScope) {
-  let refreshDist = 1; //how far your positon must change before update in miles
+.service( 'UserSrvc', function(CONST, HELPERS, $http, $rootScope) {
+  let refreshDist = CONST.REFRESH_DIST;
   let us = this;
   us.me = null;
   us.coords = { lat: null, long: null };
@@ -19,27 +19,33 @@ angular.module('wikiApp')
     });
   }
 
-  us.getMe = (meId) => {
+  us.requestMe = (meId, cb) => {
+    cb = cb || (() => {});
     let reqUrl = `${CONST.API_URL}/users/user/${meId}`
     return $http.get(reqUrl)
       .success( resp => {
         updateMe(resp);
+        cb(null, resp);
       })
       .error( err => {
         updateMe(null);
+        cb(err)
       })
   }
 
-  us.getNewDeck = () => {
+  us.requestDeck = (cb) => {
     if (!us.me || !us.coords.lat) return;
+    cb = cb || (() => {});
     let reqUrl = `${CONST.API_URL}/resources/getDeck/${CONST.SEARCH_RAD}`
     let reqBody = {loc: us.coords, user: us.me}
     return $http.post(reqUrl, reqBody)
       .success( resp => {
         updateDeck(resp);
+        cb(null, resp);
       })
       .error( err => {
         console.log("error getting deck", err);
+        cb(err);
       })
   }
 
@@ -70,7 +76,6 @@ angular.module('wikiApp')
 
   let updateMe = (me) => {
     us.me = me;
-    us.getNewDeck();
     emit('me');
   }
 
@@ -80,7 +85,7 @@ angular.module('wikiApp')
       lat: position.coords.latitude,
       long: position.coords.longitude,
     };
-    us.getNewDeck();
+    us.requestDeck();
     emit('coords');
   }
 
@@ -95,14 +100,11 @@ angular.module('wikiApp')
   }
 
   let changeInDistance = (newPosition) => {
-    // works for small changes in distance (< 1 degree);
-    // 1 degree change equals about 69 miles at (0,0)
-    // may return NaN!!!!
-    if (!us.coords.lat) return Infinity;
-    let delx = (us.coords.long - newPosition.coords.longitude)*((180 - Math.abs(us.coords.lat))/180);
-    let dely = us.coords.lat - newPosition.coords.latitude;
-    let change = Math.sqrt(Math.abs(Math.pow(delx,2) - Math.pow(dely,2)))*69;
-    return change;
+    if (!us.coords.lat || !us.coords.long) return Infinity;
+    let newCoords = {};
+    newCoords.lat = newPosition.coords.latitude;
+    newCoords.long = newPosition.coords.longitude;
+    HELPERS.calcDist(us.coords, newCoords);
   }
 
 })

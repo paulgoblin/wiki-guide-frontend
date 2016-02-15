@@ -10,6 +10,19 @@ angular.module('wikiApp', [
   // API_URL: 'http://desolate-sea-75202.herokuapp.com',
   API_URL: 'http://localhost:3000',
   SEARCH_RAD: '100',  // miles
+  REFRESH_DIST: '1', //how far your positon must change before deck updates, in miles
+})
+
+.constant('HELPERS', {
+  calcDist: (coords1, coords2) => {
+    let milesPerDegreeLat = 69.2;
+    let delx = (coords1.long - coords2.long)*((180 - Math.abs(coords1.lat))/180);
+    let dely = coords1.lat - coords2.lat;
+    let delx2 = Math.pow(delx,2);
+    let dely2 = Math.pow(dely,2);
+    let dist = Math.sqrt(delx2 + dely2)*milesPerDegreeLat;
+    return Math.round(dist*10)/10;
+  }
 })
 
 .run(function (localStorageService, $state,  $http, UserSrvc) {
@@ -34,5 +47,5 @@ angular.module('wikiApp', [
   }
   $http.defaults.headers.common.Authorization = token;
   window.location.hash = window.location.hash.replace(/\?.*/,'');
-  UserSrvc.getMe(payload.id);
+  UserSrvc.requestMe(payload.id, UserSrvc.requestDeck);
 })
