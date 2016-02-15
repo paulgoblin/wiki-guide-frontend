@@ -34,14 +34,14 @@ angular.module('wikiApp')
     movingCardTimeout();
     dc.liked = true;
     dc.movingCard = angular.copy(resource);
-    UserSrvc.like(resource) && ResourceSrvc.addLike(resource);
+    UserSrvc.like(resource, ResourceSrvc.addLike);
   }
   dc.strike = (resource) => {
     if (dc.movingCard) return;
     movingCardTimeout();
     dc.liked = false;
     dc.movingCard = angular.copy(resource);
-    UserSrvc.strike(resource) && ResourceSrvc.addStrike(resource);
+    UserSrvc.strike(resource, ResourceSrvc.addStrike);
   }
 
   let movingCardTimeout = () => {

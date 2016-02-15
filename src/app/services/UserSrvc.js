@@ -35,20 +35,18 @@ angular.module('wikiApp')
       })
   }
 
-  this.like = (resource) => {
-    removeFromDeck(resource);
-    if (this.me.likes.some(like => like._id === resource._id)) return false;
+  this.like = (resource, cb) => {
+    if (this.me.likes.some(like => like._id === resource._id)) return;
     this.me.likes.push(resource);
+    cb(resource)
     emit('me');
-    return true;
   }
 
-  this.strike = (resource) => {
-    removeFromDeck(resource);
-    if (this.me.strikes.some(strike => strike === resource._id)) return false;
+  this.strike = (resource, cb) => {
+    if (this.me.strikes.some(strike => strike === resource._id)) return;
     this.me.strikes.push(resource._id);
+    cb(resource)
     emit('me');
-    return true;
   }
 
   this.listen = (eventName, scope, callback) => {

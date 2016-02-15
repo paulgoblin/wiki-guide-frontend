@@ -42,23 +42,13 @@ angular.module('wikiApp')
       })
   }
 
-  this.listen = (eventName, scope, callback) => {
-    let handler = $rootScope.$on(eventName, callback);
-    scope.$on('$destroy', handler);
-  }
-
-  let emit = (eventName) => {
-    $rootScope.$emit(eventName);
-  }
-
   this.setWell = (resource) => {
     this.well = resource;
   }
 
-  let updateDeck = (deck) => {
-    this.deck = deck;
-    if (!this.well) this.well = deck[0];
-    emit('deck');
+  this.listen = (eventName, scope, callback) => {
+    let handler = $rootScope.$on(eventName, callback);
+    scope.$on('$destroy', handler);
   }
 
   let removeFromDeck = (resource) => {
@@ -66,5 +56,14 @@ angular.module('wikiApp')
     if (resI !== -1) this.deck.splice(resI, 1);
   }
 
+  let emit = (eventName) => {
+    $rootScope.$emit(eventName);
+  }
+
+  let updateDeck = (deck) => {
+    this.deck = deck;
+    if (!this.well) this.well = deck[0];
+    emit('deck');
+  }
 
 })
