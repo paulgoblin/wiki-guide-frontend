@@ -19,18 +19,8 @@ angular.module('wikiApp')
     LoginSrvc.logout();
     $state.go('main', {login: true});
   }
-  LoginSrvc.listen($scope, () => {
-    let token = LoginSrvc.token;
-    console.log("got a new token", token);
-    if (!token) return;
-    let payload = JSON.parse(atob(token.split('.')[1]));
-    UserSrvc.requestMe(payload.id, UserSrvc.requestDeck());
-  })
   UserSrvc.listen('me', $scope, () => {
     nb.me = UserSrvc.me;
-  })
-  UserSrvc.listen('deck', $scope, () => {
-    ResourceSrvc.handleNewDeck(UserSrvc.deck);
   })
   nb.me = UserSrvc.me;
   nb.selected = window.location.hash.split('/')[1];

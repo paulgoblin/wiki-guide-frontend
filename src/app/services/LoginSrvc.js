@@ -35,7 +35,6 @@ angular.module('wikiApp')
   }
 
   let updateToken = (token) => {
-    console.log("updating token");
     this.token = 'Bearer ' + token;
     localStorageService.set('token', 'Bearer ' + token);
     $http.defaults.headers.common.Authorization = token;

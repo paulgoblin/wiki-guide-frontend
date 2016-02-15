@@ -14,7 +14,7 @@ angular.module('wikiApp')
   }
 })
 
-.controller('mainPageCtrl', function($scope, $state, $stateParams, UserSrvc, ResourceSrvc) {
+.controller('mainPageCtrl', function($scope, $stateParams, UserSrvc) {
   let mp = this;
   mp.showLogin = $stateParams.login;
   mp.deck = UserSrvc.deck;

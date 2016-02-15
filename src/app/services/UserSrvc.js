@@ -3,6 +3,8 @@ angular.module('wikiApp')
 
 .service( 'UserSrvc', function(CONST, HELPERS, $http, $rootScope) {
   let refreshDist = CONST.REFRESH_DIST;
+  let searchDistFactor = 1;
+
   let us = this;
   us.me = null;
   us.coords = { lat: null, long: null };
@@ -13,7 +15,10 @@ angular.module('wikiApp')
     if (!("geolocation" in navigator)) return;
     navigator.geolocation.clearWatch(us.locationWatcher);
     us.locationWatcher = navigator.geolocation.watchPosition((newPosition) => {
-      if (changeInDistance(newPosition) > refreshDist) updateCoords(newPosition);
+      if (changeInDistance(newPosition) > refreshDist) {
+        updateCoords(newPosition);
+        searchDistFactor = 1;
+      }
     }, (err) => {
       console.log("couldn't find geolocation", err);
     });
@@ -36,7 +41,8 @@ angular.module('wikiApp')
   us.requestDeck = (cb) => {
     if (!us.me || !us.coords.lat) return;
     cb = cb || (() => {});
-    let reqUrl = `${CONST.API_URL}/resources/getDeck/${CONST.SEARCH_RAD}`
+    let searchRadius = searchDistFactor * CONST.INITIAL_SEARCH_RAD;
+    let reqUrl = `${CONST.API_URL}/resources/getDeck/${searchRadius}`
     let reqBody = {loc: us.coords, user: us.me}
     return $http.post(reqUrl, reqBody)
       .success( resp => {
@@ -85,7 +91,6 @@ angular.module('wikiApp')
       lat: position.coords.latitude,
       long: position.coords.longitude,
     };
-    us.requestDeck();
     emit('coords');
   }
 

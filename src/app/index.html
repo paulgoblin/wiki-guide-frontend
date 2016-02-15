@@ -22,6 +22,8 @@
     <!-- modules -->
     <script src="js/app.module.js"></script>
     <script src="js/app.routes.js"></script>
+    <!-- controllers -->
+    <script src="js/appCtrl.js"></script>
     <!-- services -->
     <script src="js/services/LoginSrvc.js"></script>
     <script src="js/services/UserSrvc.js"></script>
@@ -37,7 +39,7 @@
     <script src="js/shared/card/card.js"></script>
 
   </head>
-  <body ng-app="wikiApp">
+  <body ng-app="wikiApp" ng-controller="appCtrl">
     <nav-bar></nav-bar>
     <div ui-view></div>
   </body>
