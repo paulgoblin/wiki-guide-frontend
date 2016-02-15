@@ -17,27 +17,31 @@ angular.module('wikiApp')
 
 .controller('deckCtrl', function($state, UserSrvc, ResourceSrvc, $timeout) {
   let dc = this;
-
   let animationTime = 0.34;  // seconds
-  this.deck = this.deck || [{}];
+
+  dc.deck = dc.deck || [{}];
   dc.movingCard = null;
   dc.preLoad = () => {
-    return this.deck[1] ? this.deck[1].info.imgUrl : '';
+    return dc.deck[1] ? dc.deck[1].info.imgUrl : '';
   }
 
   dc.viewWell = (resource) => {
     ResourceSrvc.well = resource;
     $state.go('resource', {resourceId: resource._id});
   }
+
   dc.like = (resource) => {
     if (dc.movingCard) return;
+    if (!dc.deck[0].info) return;
     movingCardTimeout();
     dc.liked = true;
     dc.movingCard = angular.copy(resource);
     UserSrvc.like(resource, ResourceSrvc.addLike);
   }
+
   dc.strike = (resource) => {
     if (dc.movingCard) return;
+    if (!dc.deck[0].info) return;
     movingCardTimeout();
     dc.liked = false;
     dc.movingCard = angular.copy(resource);

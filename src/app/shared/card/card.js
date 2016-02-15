@@ -22,6 +22,6 @@ angular.module('wikiApp')
     return { lat: cc.resource.lat, long: cc.resource.long };
   }
   cc.dist = () => {
-    return  HELPERS.calcDist(UserSrvc.coords, cc.resourceCoords());
+    return  HELPERS.calcDist(UserSrvc.coords, cc.resourceCoords()) || '';
   }
 })
