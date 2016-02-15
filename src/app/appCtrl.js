@@ -5,18 +5,14 @@ angular.module('wikiApp')
 .controller('appCtrl', function($scope, UserSrvc, ResourceSrvc, LoginSrvc){
 
   UserSrvc.listen('coords', $scope, () => {
-    UserSrvc.requestDeck();
-  })
-
-  UserSrvc.listen('deck', $scope, () => {
-    ResourceSrvc.handleNewDeck(UserSrvc.deck);
+    ResourceSrvc.requestDeck(UserSrvc.me, UserSrvc.coords);
   })
 
   LoginSrvc.listen($scope, () => {
     let token = LoginSrvc.token;
     if (!token) return;
     let payload = JSON.parse(atob(token.split('.')[1]));
-    UserSrvc.requestMe(payload.id, UserSrvc.requestDeck());
+    UserSrvc.requestMe(payload.id, ResourceSrvc.requestDeck());
   })
 
 })
