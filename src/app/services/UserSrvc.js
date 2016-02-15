@@ -30,7 +30,7 @@ angular.module('wikiApp')
         cb(null, me);
       })
       .error( err => {
-        updateMe(null);
+        this.deleteMe();
         cb(err)
       })
   }
@@ -56,6 +56,10 @@ angular.module('wikiApp')
   this.listen = (eventName, scope, callback) => {
     let handler = $rootScope.$on(eventName, callback);
     scope.$on('$destroy', handler);
+  }
+
+  this.deleteMe = () => {
+    updateMe(null);
   }
 
   let emit = (eventName) => {

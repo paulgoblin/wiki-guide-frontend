@@ -13,11 +13,10 @@ angular.module('wikiApp')
     templateUrl:'js/shared/navBar/navBar.html',
   }
 })
-.controller('navBarCtrl', function(LoginSrvc, UserSrvc, ResourceSrvc, $scope, $state,  $location) {
+.controller('navBarCtrl', function(LoginSrvc, UserSrvc, ResourceSrvc, $scope, $location) {
   let nb = this;
   nb.logout = () => {
     LoginSrvc.logout();
-    $state.go('main', {login: true});
   }
   UserSrvc.listen('me', $scope, () => {
     nb.me = UserSrvc.me;

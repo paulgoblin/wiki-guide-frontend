@@ -6,14 +6,16 @@ angular.module('wikiApp')
 
   let searchDistFactor = 1;
 
-  LoginSrvc.listen($scope, () => {
-    let token = LoginSrvc.token;
-    if (!token) return;
-    let payload = JSON.parse(atob(token.split('.')[1]));
-    UserSrvc.requestMe(payload.id);
+  LoginSrvc.listen('tokenChange', $scope, () => {
+    updateUserFromToken();
   })
 
   UserSrvc.listen('coords', $scope, () => {
+    ResourceSrvc.requestDeck(UserSrvc.me, UserSrvc.coords, searchDist());
+  })
+
+  UserSrvc.listen('me', $scope, () => {
+    if (!UserSrvc.me) return LoginSrvc.logout();
     ResourceSrvc.requestDeck(UserSrvc.me, UserSrvc.coords, searchDist());
   })
 
@@ -32,9 +34,15 @@ angular.module('wikiApp')
                            , UserSrvc.coords
                            , searchDist()
                            , (err, deck) => {
-      if (err) return;
       if (isDeckEmpty()) searchFurther();
     });
+  }
+
+  let updateUserFromToken = () => {
+    let token = LoginSrvc.token;
+    if (!token) return UserSrvc.deleteMe();;
+    let payload = JSON.parse(atob(token.split('.')[1]));
+    UserSrvc.requestMe(payload.id);
   }
 
 })
