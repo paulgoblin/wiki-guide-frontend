@@ -27,15 +27,18 @@ angular.module('wikiApp')
       })
   }
 
-  this.addLike = (resource) => {
-    console.log("adding like");
+  this.addLike = (resource, updateDb) => {
+    removeFromDeck(resource);
+    if (!updateDb) return;
     return $http.post(`${CONST.API_URL}/users/likeResource/${resource._id}`)
       .error( err => {
         console.log("error liking", err);
       })
   }
 
-  this.addStrike = (resource) => {
+  this.addStrike = (resource, updateDb) => {
+    removeFromDeck(resource)
+    if (!updateDb) return;
     return $http.post(`${CONST.API_URL}/users/strikeResource/${resource._id}`)
       .error( err => {
         console.log("error striking", err);
@@ -52,8 +55,10 @@ angular.module('wikiApp')
   }
 
   let removeFromDeck = (resource) => {
-    let resI = this.deck.indexOf(resource);
-    if (resI !== -1) this.deck.splice(resI, 1);
+    let resIndex = this.deck.indexOf(resource);
+    if (resIndex === -1) return;
+    this.deck.splice(resIndex, 1);
+    emit('deck')
   }
 
   let emit = (eventName) => {

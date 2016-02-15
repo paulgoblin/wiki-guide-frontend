@@ -36,16 +36,20 @@ angular.module('wikiApp')
   }
 
   this.like = (resource, cb) => {
-    if (this.me.likes.some(like => like._id === resource._id)) return;
+    if (this.me.likes.some(like => like._id === resource._id)){
+      return cb(resource);
+    }
     this.me.likes.push(resource);
-    cb(resource)
+    cb(resource, 'updateDb')
     emit('me');
   }
 
   this.strike = (resource, cb) => {
-    if (this.me.strikes.some(strike => strike === resource._id)) return;
+    if (this.me.strikes.some(strike => strike === resource._id)){
+      return cb(resource);
+    }
     this.me.strikes.push(resource._id);
-    cb(resource)
+    cb(resource, 'updateDb')
     emit('me');
   }
 
