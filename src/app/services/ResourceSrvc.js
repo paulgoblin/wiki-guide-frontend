@@ -3,23 +3,18 @@ angular.module('wikiApp')
 
 .service( 'ResourceSrvc', function(CONST, $http, $rootScope) {
 
-  let searchDistFactor = 1;
-
   this.well = null;
   this.deck = null;
 
-  this.requestDeck = (me, coords, cb) => {
-    console.log("reqesting deck");
-    if (!me || !coords.lat || !coords.long) return;
+  this.requestDeck = (me, coords, dist, cb) => {
+    if (!me || !coords.lat || !coords.long || !dist) return;
     cb = cb || (() => {});
-    let searchRadius = searchDistFactor * CONST.INITIAL_SEARCH_RAD;
-    let reqUrl = `${CONST.API_URL}/resources/getDeck/${searchRadius}`
+    let reqUrl = `${CONST.API_URL}/resources/getDeck/${dist}`
     let reqBody = {loc: coords, user: me}
     return $http.post(reqUrl, reqBody)
-      .success( resp => {
-        console.log("got a deck", resp);
-        updateDeck(resp);
-        cb(null, resp);
+      .success( newDeck => {
+        updateDeck(newDeck);
+        cb(null, newDeck);
       })
       .error( err => {
         console.log("error getting deck", err);
@@ -37,12 +32,16 @@ angular.module('wikiApp')
   }
 
   this.addStrike = (resource, updateDb) => {
-    removeFromDeck(resource)
+    removeFromDeck(resource);
     if (!updateDb) return;
     return $http.post(`${CONST.API_URL}/users/strikeResource/${resource._id}`)
       .error( err => {
         console.log("error striking", err);
       })
+  }
+
+  this.stopSearch = () => {
+    updateDeck([{}]);
   }
 
   this.setWell = (resource) => {
@@ -54,15 +53,15 @@ angular.module('wikiApp')
     scope.$on('$destroy', handler);
   }
 
+  let emit = (eventName) => {
+    $rootScope.$emit(eventName);
+  }
+
   let removeFromDeck = (resource) => {
     let resIndex = this.deck.indexOf(resource);
     if (resIndex === -1) return;
     this.deck.splice(resIndex, 1);
-    emit('deck')
-  }
-
-  let emit = (eventName) => {
-    $rootScope.$emit(eventName);
+    emit('deck');
   }
 
   let updateDeck = (deck) => {

@@ -10,6 +10,7 @@ angular.module('wikiApp', [
   // API_URL: 'http://desolate-sea-75202.herokuapp.com',
   API_URL: 'http://localhost:3000',
   INITIAL_SEARCH_RAD: '10',  // miles
+  MAX_SEARCH_RAD: '1000',  // miles
   REFRESH_DIST: '1', //how far your positon must change before deck updates, in miles
 })
 
@@ -48,5 +49,5 @@ angular.module('wikiApp', [
   }
   $http.defaults.headers.common.Authorization = token;
   window.location.hash = window.location.hash.replace(/\?.*/,'');
-  UserSrvc.requestMe(payload.id, ResourceSrvc.requestDeck);
+  UserSrvc.requestMe(payload.id);
 })

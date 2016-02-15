@@ -25,9 +25,9 @@ angular.module('wikiApp')
     cb = cb || (() => {});
     let reqUrl = `${CONST.API_URL}/users/user/${meId}`
     return $http.get(reqUrl)
-      .success( resp => {
-        updateMe(resp);
-        cb(null, resp);
+      .success( me => {
+        updateMe(me);
+        cb(null, me);
       })
       .error( err => {
         updateMe(null);
