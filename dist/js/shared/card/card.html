@@ -1,0 +1,7 @@
+<div class="cardContent">
+  <div class="dist" ng-if="cc.resource.info">{{cc.dist()}} mi</div>
+  <h3>{{cc.resource.info.title || "That's all folks!"}}</h3>
+  <img ng-src="{{cc.resource.info.imgUrl}}" alt="">
+  <p>{{cc.resource.info.intro || "Come back when you're in a new place!"}}</p>
+  <div class="fadeout cardFade"></div>
+</div>

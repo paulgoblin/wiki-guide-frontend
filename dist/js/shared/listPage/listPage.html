@@ -1,0 +1,19 @@
+<div id="listPage" class="page">
+  <div id="listPanel" class="viewPanel">
+    <div class="listSearch input-group">
+      <input ng-model="lp.query" type="text" class="form-control" placeholder="Search for...">
+      <span class="input-group-btn">
+         <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
+       </span>
+    </div>
+    <ul class="list-group likesList">
+      <li ng-repeat="resource in lp.me.likes | filter : lp.query"
+      ng-click="viewResource($index)" class="likesListItem list-group-item">
+        <span>
+          {{resource.info.title}}
+        </span>
+        <i class="fa fa-wikipedia-w" ng-click="lp.viewResource(resource)"></i>
+      </li>
+    </ul>
+  </div>
+</div>
