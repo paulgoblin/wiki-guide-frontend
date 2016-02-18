@@ -1,19 +1,17 @@
 .loginModal {
-  height: 100vh;
+  height: 140vh;
   width: 100vw;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   z-index: 99999;
   background: rgba(0,0,0,0.3);
 }
 .loginForm {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: $background-color;
+  margin-top: 1em;
+  background: #FDFDFD;
   padding: 1em 0 3em;
-  border-radius: $border-radius-base;
+  border-radius: 4px;
 }
 .loginInputs {
   text-align: center;
