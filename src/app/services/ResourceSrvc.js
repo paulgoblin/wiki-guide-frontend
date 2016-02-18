@@ -9,10 +9,12 @@ angular.module('wikiApp')
   this.requestDeck = (me, coords, dist, cb) => {
     if (!me || !coords.lat || !coords.long || !dist) return;
     cb = cb || (() => {});
-    let reqUrl = `${CONST.API_URL}/resources/getDeck/${dist}`
-    let reqBody = {loc: coords, user: me}
+    let reqUrl = `${CONST.API_URL}/resources/getDeck`
+               + `/${dist}/${coords.lat}/${coords.long}`
+    let reqBody = {user: me}
     return $http.post(reqUrl, reqBody)
       .success( newDeck => {
+        console.log("new deck", newDeck);
         updateDeck(newDeck);
         cb(null, newDeck);
       })

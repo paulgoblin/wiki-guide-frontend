@@ -24,15 +24,17 @@ $card-margin-bottom: 5px;
     font-family: "Georgia", Times, serif;
   }
   img {
-    height: 55%;
+    max-height: 55%;
     max-width: 100%;
     border-radius: $border-radius-base;
   }
   p {
     height: 20%;
     width: 100%;
+    position: absolute;
     bottom: 0;
-    padding-top:0.5em ;
+    right: 0;
+    padding: 0.5em 1em;
     background: $background-color;
   }
   .dist {

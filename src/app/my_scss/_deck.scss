@@ -1,7 +1,10 @@
 #deck {
   max-width: 600px;
   margin: auto;
-  padding-top: 1em;
+
+  .cards {
+  margin: 1em 0;
+  }
 
   .preload {
     display: none;

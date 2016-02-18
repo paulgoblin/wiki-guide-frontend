@@ -41,7 +41,7 @@ angular.module('wikiApp')
     }
     this.me.likes.push(resource);
     cb(resource, 'updateDb')
-    emit('me');
+    emit('vote');
   }
 
   this.strike = (resource, cb) => {
@@ -50,7 +50,7 @@ angular.module('wikiApp')
     }
     this.me.strikes.push(resource._id);
     cb(resource, 'updateDb')
-    emit('me');
+    emit('vote');
   }
 
   this.listen = (eventName, scope, callback) => {

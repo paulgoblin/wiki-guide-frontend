@@ -19,6 +19,9 @@ angular.module('wikiApp')
   UserSrvc.listen('me', $scope, () => {
     lp.me = UserSrvc.me;
   })
+  UserSrvc.listen('vote', $scope, () => {
+    lp.me = UserSrvc.me;
+  })
   lp.viewResource = (resource) => {
     ResourceSrvc.setWell(resource);
     $state.go('resource', {resourceId: resource._id});
