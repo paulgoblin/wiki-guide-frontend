@@ -1,0 +1,7 @@
+<div id="mainPage" class="page">
+  <div id="mainPanel" class="viewPanel">
+    <div ng-hide="mp.deck.length" class="spinner"></div>
+    <deck ng-if="mp.deck.length" deck="mp.deck"></deck>
+  </div>
+  <login-modal ng-if="mp.showLogin"></login-modal>
+</div>

@@ -1,0 +1,64 @@
+#deck {
+  max-width: 600px;
+  margin: auto;
+
+  .cards {
+  margin: 1em 0;
+  }
+
+  .preload {
+    display: none;
+  }
+
+  .deckBtnContainer {
+    max-width: 600px;
+    margin: auto;
+  }
+
+  .deckBtn {
+    width: 25%;
+    @include aspect-ratio(1,1)
+    float: left;
+    border-radius: 9999px;
+    border: 1px solid $dark-background-color;
+    text-align: center;
+    i {
+      font-size: 12vw;
+    }
+    &:hover {
+      background: $dark-background-color;
+    }
+  }
+
+  .strikeBtn {
+    margin-left: 8.333333%;
+    margin-top: 4.1%;
+    color: #CB0000;
+  }
+  .likeBtn {
+    color: #198B66;
+    margin-top: 4.1%;
+    margin-right: 8.333333%;
+  }
+
+  .viewResourceBtn {
+    color: $font-color;
+    width: 33.33333333%;
+    height: 33.33333333%;
+    i {
+      line-height: 55%;
+      font-size: 20vw;
+    }
+  }
+
+  @media (min-width: 645px) {
+    .deckBtn i {
+      font-size: 5.4em;
+    }
+    .viewResourceBtn i {
+      line-height: .6em;
+      font-size: 8.7em;
+    }
+  }
+
+}

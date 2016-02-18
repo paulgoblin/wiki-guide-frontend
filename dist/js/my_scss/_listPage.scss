@@ -1,0 +1,19 @@
+#listPanel {
+  padding-top: 1em;
+}
+
+.likesList {
+  padding: 1em 0;
+}
+
+.likesListItem {
+  span {
+
+  }
+  i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
