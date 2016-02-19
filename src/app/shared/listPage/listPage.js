@@ -16,6 +16,7 @@ angular.module('wikiApp')
 .controller('listPageCtrl', function($scope, $state, UserSrvc, ResourceSrvc, HELPERS) {
   let lp = this;
   lp.me = UserSrvc.me || { likes: [] };
+  lp.coords = UserSrvc.coords.lat ? UserSrvc.coords : null;
   lp.viewResource = (resource) => {
     ResourceSrvc.setWell(resource);
     $state.go('resource', {resourceId: resource._id});
@@ -27,14 +28,16 @@ angular.module('wikiApp')
   lp.ratingClass = (resource) => {
     let ratingScale = 10;
     if (!lp.nearby) return;
-    let rating = Math.ceil(ratingScale*lp.sortOrder(resource));
-    console.log("rating class", rating);
+    let rating = Math.ceil(ratingScale*UserSrvc.likesDistDict[resource.pageid]);
     return `rating${rating}`;
   }
 
   // listners
   UserSrvc.listen('me', $scope, () => {
     lp.me = UserSrvc.me;
+  })
+  UserSrvc.listen('coords', $scope, () => {
+    lp.coords = UserSrvc.coords;
   })
   UserSrvc.listen('vote', $scope, () => {
     lp.me = UserSrvc.me;

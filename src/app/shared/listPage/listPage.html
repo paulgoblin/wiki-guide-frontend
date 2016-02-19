@@ -1,6 +1,6 @@
 <div id="listPage" class="page">
   <div id="listPanel" class="viewPanel">
-    <div class="listSearch input-group">
+    <div ng-if="lp.coords" class="listSearch input-group">
       <div class="input-group-addon">
         <input id="nearby" class='input-group-addon' type="checkbox" ng-model="lp.nearby">
       </div>
