@@ -6,7 +6,7 @@ angular.module('wikiApp')
   let refreshDist = CONST.REFRESH_DIST;
 
   this.me = null;
-  // this.likesDist = {};
+  this.likesDistDict = {};
   this.coords = { lat: null, long: null };
   this.locationWatcher = null;
 
@@ -16,6 +16,7 @@ angular.module('wikiApp')
     this.locationWatcher = navigator.geolocation.watchPosition((newPosition) => {
       if (changeInDistance(newPosition) > refreshDist) {
         updateCoords(newPosition);
+        calcLikesDist();
       }
     }, (err) => {
       console.log("couldn't find geolocation", err);
@@ -28,6 +29,7 @@ angular.module('wikiApp')
     return $http.get(reqUrl)
       .success( me => {
         updateMe(me);
+        calcLikesDist();
         cb(null, me);
       })
       .error( err => {
@@ -61,6 +63,24 @@ angular.module('wikiApp')
 
   this.deleteMe = () => {
     updateMe(null);
+  }
+
+  let calcLikesDist = () => {
+    if (!this.me || !this.coords.lat || !this.me.likes.length) return;
+    this.likesDistDict = {};
+    this.me.likes.forEach( like => {
+      this.likesDistDict[like.pageid] = distRating(like);
+    })
+    console.log("likes dist dict", this.likesDistDict);
+  }
+
+  let distRating = (resource) => {
+    let hotZone = 10; // miles
+    let resCoords = { lat: resource.lat, long: resource.long };
+    if (!resCoords.lat || !resCoords.long || !this.coords) return 0;
+    let dist = HELPERS.calcDist(resCoords, this.coords);
+    let rating = (dist <= hotZone) ? (hotZone - dist)/hotZone : 0;
+    return rating
   }
 
   let emit = (eventName) => {

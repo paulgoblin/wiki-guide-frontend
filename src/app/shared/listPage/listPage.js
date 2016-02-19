@@ -16,37 +16,25 @@ angular.module('wikiApp')
 .controller('listPageCtrl', function($scope, $state, UserSrvc, ResourceSrvc, HELPERS) {
   let lp = this;
   lp.me = UserSrvc.me || { likes: [] };
-  lp.coords = UserSrvc.coords || null;
   lp.viewResource = (resource) => {
     ResourceSrvc.setWell(resource);
     $state.go('resource', {resourceId: resource._id});
   }
   lp.sortOrder = (resource) => {
-    console.log("sort order");
-    if (!lp.coords || !lp.nearby) return 'index';
-    return distRating(resource);
+    if (!lp.nearby) return 'index';
+    return UserSrvc.likesDistDict[resource.pageid];
   }
   lp.ratingClass = (resource) => {
+    let ratingScale = 10;
     if (!lp.nearby) return;
-    let ratingCat = Math.ceil(distRating(resource)*10);
-    return `rating${ratingCat}`;
-  }
-
-  function distRating(resource) {
-    let hotZone = 10; // miles
-    let resCoords = { lat: resource.lat, long: resource.long };
-    if (!resCoords.lat || !resCoords.long || !lp.coords) return 0;
-    let dist = HELPERS.calcDist(resCoords, lp.coords);
-    let rating = (dist <= hotZone) ? (hotZone - dist)/hotZone : 0;
-    return rating
+    let rating = Math.ceil(ratingScale*lp.sortOrder(resource));
+    console.log("rating class", rating);
+    return `rating${rating}`;
   }
 
   // listners
   UserSrvc.listen('me', $scope, () => {
     lp.me = UserSrvc.me;
-  })
-  UserSrvc.listen('coords', $scope, () => {
-    lp.coords = UserSrvc.coords;
   })
   UserSrvc.listen('vote', $scope, () => {
     lp.me = UserSrvc.me;

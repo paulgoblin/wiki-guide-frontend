@@ -1,14 +1,15 @@
 <div id="listPage" class="page">
   <div id="listPanel" class="viewPanel">
     <div class="listSearch input-group">
-      <div ng-if="lp.coords" class="input-group-addon">
+      <div class="input-group-addon">
         <input id="nearby" class='input-group-addon' type="checkbox" ng-model="lp.nearby">
       </div>
       <label for="nearby" class="form-control">Find nearby</label>
     </div>
     <ul class="list-group likesList">
       <li ng-repeat="resource in lp.me.likes | orderBy: lp.sortOrder"
-      ng-click="viewResource($index)" class="likesListItem list-group-item" ng-class="lp.ratingClass(resource)">
+      ng-click="viewResource($index)" class="likesListItem list-group-item"
+      ng-class="lp.ratingClass(resource)">
         <span>
           {{resource.info.title}}
         </span>

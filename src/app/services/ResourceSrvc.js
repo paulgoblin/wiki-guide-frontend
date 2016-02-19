@@ -14,9 +14,6 @@ angular.module('wikiApp')
     let reqBody = {user: me}
     return $http.post(reqUrl, reqBody)
       .success( newDeck => {
-        newDeck.forEach((resource) => {
-          console.log(resource.likes);
-        })
         updateDeck(newDeck);
         cb(null, newDeck);
       })

@@ -4,7 +4,6 @@ angular.module('wikiApp')
 // Handles all communication between services or within services.
 .controller('appCtrl', function($scope, CONST, UserSrvc, ResourceSrvc, LoginSrvc){
 
-  let searchDistFactor = 1;
 
   LoginSrvc.listen('tokenChange', $scope, () => {
     updateUserFromToken();
@@ -27,6 +26,7 @@ angular.module('wikiApp')
   let searchDist = () => searchDistFactor * CONST.INITIAL_SEARCH_RAD;
   let haveExceededMaxSearch = () => searchDist() > CONST.MAX_SEARCH_RAD;
 
+  let searchDistFactor = 1;
   let searchFurther = () => {
     searchDistFactor+= searchDistFactor;
     if (haveExceededMaxSearch()) return ResourceSrvc.stopSearch();
