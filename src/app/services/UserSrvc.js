@@ -6,6 +6,7 @@ angular.module('wikiApp')
   let refreshDist = CONST.REFRESH_DIST;
 
   this.me = null;
+  // this.likesDist = {};
   this.coords = { lat: null, long: null };
   this.locationWatcher = null;
 

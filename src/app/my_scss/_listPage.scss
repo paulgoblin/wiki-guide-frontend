@@ -1,14 +1,14 @@
 #listPanel {
-  .rating1 { background: transparentize(red, 0.5) }
-  .rating2 { background: transparentize(red, 0.55) }
-  .rating3 { background: transparentize(red, 0.6) }
-  .rating4 { background: transparentize(red, 0.65) }
-  .rating5 { background: transparentize(red, 0.7) }
-  .rating6 { background: transparentize(red, 0.75) }
-  .rating7 { background: transparentize(red, 0.8) }
-  .rating8 { background: transparentize(red, 0.85) }
-  .rating9 { background: transparentize(red, 0.9) }
-  .rating10 { background: transparentize(red, 0.5) }
+  .rating1 { @include rating-color(red, 1) }
+  .rating2 { @include rating-color(red, 0.9) }
+  .rating3 { @include rating-color(red, 0.8) }
+  .rating4 { @include rating-color(red, 0.7) }
+  .rating5 { @include rating-color(red, 0.6) }
+  .rating6 { @include rating-color(red, 0.5) }
+  .rating7 { @include rating-color(red, 0.4) }
+  .rating8 { @include rating-color(red, 0.3) }
+  .rating9 { @include rating-color(red, 0.2) }
+  .rating10 { @include rating-color(red, 0.1) }
 }
 
 #listPage {

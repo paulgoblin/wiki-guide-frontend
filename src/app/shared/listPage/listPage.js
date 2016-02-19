@@ -22,10 +22,12 @@ angular.module('wikiApp')
     $state.go('resource', {resourceId: resource._id});
   }
   lp.sortOrder = (resource) => {
+    console.log("sort order");
     if (!lp.coords || !lp.nearby) return 'index';
-    if(lp.nearby) return distRating(resource);
+    return distRating(resource);
   }
   lp.ratingClass = (resource) => {
+    if (!lp.nearby) return;
     let ratingCat = Math.ceil(distRating(resource)*10);
     return `rating${ratingCat}`;
   }
@@ -36,7 +38,6 @@ angular.module('wikiApp')
     if (!resCoords.lat || !resCoords.long || !lp.coords) return 0;
     let dist = HELPERS.calcDist(resCoords, lp.coords);
     let rating = (dist <= hotZone) ? (hotZone - dist)/hotZone : 0;
-    console.log("rating", rating);
     return rating
   }
 

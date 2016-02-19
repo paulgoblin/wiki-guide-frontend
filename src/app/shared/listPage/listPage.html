@@ -1,18 +1,12 @@
 <div id="listPage" class="page">
   <div id="listPanel" class="viewPanel">
     <div class="listSearch input-group">
-      <div class="input-group-addon">
+      <div ng-if="lp.coords" class="input-group-addon">
         <input id="nearby" class='input-group-addon' type="checkbox" ng-model="lp.nearby">
       </div>
       <label for="nearby" class="form-control">Find nearby</label>
-        <!-- <input ng-model="lp.query" type="text" class="form-control" placeholder="Search for...">
-        <span class="input-group-btn">
-          <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-        </span> -->
     </div>
     <ul class="list-group likesList">
-      <!-- <li ng-repeat="resource in lp.me.likes | filter : lp.query"
-      ng-click="viewResource($index)" class="likesListItem list-group-item"> -->
       <li ng-repeat="resource in lp.me.likes | orderBy: lp.sortOrder"
       ng-click="viewResource($index)" class="likesListItem list-group-item" ng-class="lp.ratingClass(resource)">
         <span>
