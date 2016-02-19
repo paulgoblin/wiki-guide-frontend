@@ -1,7 +1,8 @@
 #resourcePage {
-  #resourcePanel {
-    height: calc(100vh - #{$nav-bar-height} - #{$nav-underline-height});
-  }
+}
+
+#resourcePanel {
+  height: calc(100vh - #{$nav-bar-height} - #{$nav-underline-height});
 }
 
 .wellView {
