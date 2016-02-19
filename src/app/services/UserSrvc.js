@@ -39,7 +39,7 @@ angular.module('wikiApp')
     if (this.me.likes.some(like => like._id === resource._id)){
       return cb(resource);
     }
-    this.me.likes.push(resource);
+    this.me.likes.unshift(resource);
     cb(resource, 'updateDb')
     emit('vote');
   }
