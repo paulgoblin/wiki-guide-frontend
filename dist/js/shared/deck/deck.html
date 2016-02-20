@@ -1,0 +1,24 @@
+<div id="deck">
+  <img class='preload' ng-src="{{dc.preLoad()}}" alt="">
+  <div class="cards card panel panel-default">
+    <div class="card panel panel-default">
+      <div class="movingCard panel panel-default topCard animated"
+           ng-if="dc.movingCard"
+           card-directive
+           resource="dc.movingCard"
+           ng-class=" dc.liked ? 'slideOutRight' : 'slideOutLeft' ">
+       </div>
+      <div class="card panel panel-default topCard"
+           card-directive
+           resource="dc.deck[0]">
+       </div>
+     </div>
+   </div>
+  <div class="deckBtnContainer">
+    <div ng-click="dc.strike(dc.deck[0])" class="strikeBtn deckBtn"><i class="fa fa-times squareContent"></i></div>
+
+    <div ng-click="dc.viewWell(dc.deck[0])" class="viewResourceBtn deckBtn"><i class="fa fa-search squareContent"></i></div>
+
+    <div ng-click="dc.like(dc.deck[0])" class="likeBtn deckBtn"><i class="fa fa-check squareContent"></i></i></div>
+  </div>
+</div>

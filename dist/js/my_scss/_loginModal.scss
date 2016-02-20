@@ -1,0 +1,40 @@
+.loginModal {
+  height: 140vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  background: rgba(0,0,0,0.3);
+}
+.loginForm {
+  margin-top: 1em;
+  background: #FDFDFD;
+  padding: 1em 0 3em;
+  border-radius: 4px;
+}
+.loginInputs {
+  text-align: center;
+  margin: auto;
+  max-width: 300px;
+  padding: 0 10px;
+}
+.register {
+  padding-top: 1em;
+}
+
+.loginModal .alertBar {
+  margin-top: 1em;
+}
+
+.loginCloseBtnContainer {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  &:hover {
+    color: $font-color-light;
+  }
+  i {
+    padding: 4px;
+  }
+}
