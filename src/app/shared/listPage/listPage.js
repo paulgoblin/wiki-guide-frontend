@@ -42,8 +42,5 @@ angular.module('wikiApp')
   UserSrvc.listen('coords', $scope, () => {
     lp.coords = UserSrvc.coords;
   })
-  UserSrvc.listen('vote', $scope, () => {
-    lp.me = UserSrvc.me;
-  })
 
 });

@@ -42,6 +42,7 @@ angular.module('wikiApp')
     if (this.me.likes.some(like => like._id === resource._id)){
       return cb(resource);
     }
+    this.likesDistDict[resource.pageid] = distRating(resource);
     this.me.likes.unshift(resource);
     cb(resource, 'updateDb')
     emit('vote');
@@ -71,7 +72,6 @@ angular.module('wikiApp')
     this.me.likes.forEach( like => {
       this.likesDistDict[like.pageid] = distRating(like);
     })
-    console.log("likes dist dict", this.likesDistDict);
   }
 
   let distRating = (resource) => {
