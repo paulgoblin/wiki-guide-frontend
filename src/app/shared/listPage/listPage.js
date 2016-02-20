@@ -17,6 +17,10 @@ angular.module('wikiApp')
   let lp = this;
   lp.me = UserSrvc.me || { likes: [] };
   lp.coords = UserSrvc.coords.lat ? UserSrvc.coords : null;
+
+  lp.ratingScale = 10;
+  lp.legend = [...Array(lp.ratingScale)].map((_,i) => `rating${i+1}`).reverse();
+
   lp.viewResource = (resource) => {
     ResourceSrvc.setWell(resource);
     $state.go('resource', {resourceId: resource._id});
@@ -26,9 +30,8 @@ angular.module('wikiApp')
     return UserSrvc.likesDistDict[resource.pageid];
   }
   lp.ratingClass = (resource) => {
-    let ratingScale = 10;
     if (!lp.nearby) return;
-    let rating = Math.ceil(ratingScale*UserSrvc.likesDistDict[resource.pageid]);
+    let rating = Math.ceil(lp.ratingScale*UserSrvc.likesDistDict[resource.pageid]);
     return `rating${rating}`;
   }
 

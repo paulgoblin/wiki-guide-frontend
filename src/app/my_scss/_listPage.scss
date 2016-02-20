@@ -11,6 +11,20 @@
   .rating10 { @include rating-color(red, 0.1) }
 }
 
+.legend {
+  text-align: center;
+  margin-top: 1em;
+  .bar {
+    height: 1em;
+    display: inline-block;
+  }
+  .bar .entry {
+    float: left;
+    width: 1em;
+    height: 1em;
+  }
+}
+
 #listPage {
   padding-left: 1em;
   padding-right: 1em;
