@@ -9,6 +9,7 @@ angular.module('wikiApp')
   this.likesDistDict = {};
   this.coords = { lat: null, long: null };
   this.locationWatcher = null;
+  this.nearby = null;
 
   this.locate = () => {
     if (!("geolocation" in navigator)) return;

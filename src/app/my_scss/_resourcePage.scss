@@ -1,12 +1,23 @@
 #resourcePage {
-}
 
-#resourcePanel {
-  height: calc(100vh - #{$nav-bar-height} - #{$nav-underline-height});
-}
+  padding-top: 0em;
 
-.wellView {
-  margin-top: .5em;
-  width: 100%;
-  height: 100%;
+  #resourcePanel {
+    height: calc(100vh - #{$nav-bar-height} - #{$nav-underline-height} - 10px);
+  }
+
+  .wellView {
+    margin-top: .5em;
+    width: 100%;
+    height: 100%;
+  }
+
+  .distHUD {
+    position: absolute;
+    right: 10px;
+    font-weight: bold;
+    font-size: small;
+    color: $font-color-light;
+  }
+
 }

@@ -13,9 +13,23 @@ angular.module('wikiApp')
     templateUrl:'js/shared/resourcePage/resourcePage.html',
   }
 })
-.controller('resourcePageCtrl', function($scope, $sce, ResourceSrvc, UserSrvc) {
+.controller('resourcePageCtrl', function($scope, $sce, ResourceSrvc, UserSrvc, HELPERS) {
   let rp = this;
   let defaultUrl = "https://www.wikipedia.org/"
+
   rp.well = ResourceSrvc.well;
   rp.iframeUrl = $sce.trustAsResourceUrl(rp.well ? rp.well.info.url : defaultUrl);
+
+  let dist = () => {
+    if (!rp.well) return;
+    let wellCoords = { lat: rp.well.lat, long: rp.well.long };
+    return  HELPERS.calcDist(UserSrvc.coords, wellCoords) || '';
+  }
+
+  rp.dist = dist();
+
+  UserSrvc.listen('coords', $scope, () => {
+    rp.dist = dist();
+  })
+
 });

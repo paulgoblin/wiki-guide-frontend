@@ -1,14 +1,20 @@
 #listPanel {
-  .rating1 { @include rating-color(red, 1) }
-  .rating2 { @include rating-color(red, 0.9) }
-  .rating3 { @include rating-color(red, 0.8) }
-  .rating4 { @include rating-color(red, 0.7) }
-  .rating5 { @include rating-color(red, 0.6) }
-  .rating6 { @include rating-color(red, 0.5) }
-  .rating7 { @include rating-color(red, 0.4) }
-  .rating8 { @include rating-color(red, 0.3) }
-  .rating9 { @include rating-color(red, 0.2) }
-  .rating10 { @include rating-color(red, 0.1) }
+  .rating10 { @include rating-color(red, 1) }
+  .rating9 { @include rating-color(red, 0.9) }
+  .rating8 { @include rating-color(red, 0.8) }
+  .rating7 { @include rating-color(red, 0.7) }
+  .rating6 { @include rating-color(red, 0.6) }
+  .rating5 { @include rating-color(red, 0.5) }
+  .rating4 { @include rating-color(red, 0.4) }
+  .rating3 { @include rating-color(red, 0.3) }
+  .rating2 { @include rating-color(red, 0.2) }
+  .rating1 { @include rating-color(red, 0.1) }
+}
+
+.listSearch {
+  #nearby {
+    margin-right: .5em;
+  }
 }
 
 .legend {
@@ -18,7 +24,7 @@
     height: 1em;
     display: inline-block;
   }
-  .bar .entry {
+  .entry {
     float: left;
     width: 1em;
     height: 1em;

@@ -17,7 +17,7 @@ angular.module('wikiApp')
   let lp = this;
   lp.me = UserSrvc.me || { likes: [] };
   lp.coords = UserSrvc.coords.lat ? UserSrvc.coords : null;
-
+  lp.nearby = UserSrvc.nearby;
   lp.ratingScale = 10;
   lp.legend = [...Array(lp.ratingScale)].map((_,i) => `rating${i+1}`).reverse();
 
@@ -27,12 +27,15 @@ angular.module('wikiApp')
   }
   lp.sortOrder = (resource) => {
     if (!lp.nearby) return 'index';
-    return UserSrvc.likesDistDict[resource.pageid];
+    return -UserSrvc.likesDistDict[resource.pageid];
   }
   lp.ratingClass = (resource) => {
     if (!lp.nearby) return;
     let rating = Math.ceil(lp.ratingScale*UserSrvc.likesDistDict[resource.pageid]);
     return `rating${rating}`;
+  }
+  lp.togNearby = () => {
+    UserSrvc.nearby = !UserSrvc.nearby;
   }
 
   // listners
