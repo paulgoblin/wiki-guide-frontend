@@ -1,12 +1,11 @@
 'use strict';
-
-angular.module('wikiApp', [
+let app = angular.module('wikiApp', [
   'ui.bootstrap',
   'ui.router',
   'LocalStorageModule',
 ])
 
-.constant('CONST', {
+app.constant('CONST', {
   API_URL: 'http://desolate-sea-75202.herokuapp.com',
   // API_URL: 'http://localhost:3000',
   INITIAL_SEARCH_RAD: '10',  // miles
@@ -14,7 +13,7 @@ angular.module('wikiApp', [
   REFRESH_DIST: '1', //how far your positon must change before deck updates, in miles
 })
 
-.constant('HELPERS', {
+app.constant('HELPERS', {
   calcDist: (coords1, coords2) => {
     let sigFigs = 2;
     let milesPerDegreeLat = 69.2;
@@ -27,7 +26,7 @@ angular.module('wikiApp', [
   }
 })
 
-.run(function (UserSrvc, LoginSrvc) {
+app.run(function (UserSrvc, LoginSrvc) {
   UserSrvc.locate();
   LoginSrvc.init(UserSrvc.requestMe);
 })

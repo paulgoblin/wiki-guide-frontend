@@ -1,7 +1,6 @@
 'use strict';
-angular.module('wikiApp')
 
-.directive('navBar', function(){
+app.directive('navBar', function(){
   return {
     restrict: 'E',
     replace: true,
@@ -13,7 +12,7 @@ angular.module('wikiApp')
     templateUrl:'js/shared/navBar/navBar.html',
   }
 })
-.controller('navBarCtrl', function(LoginSrvc, UserSrvc, ResourceSrvc, $scope, $location) {
+app.controller('navBarCtrl', function(LoginSrvc, UserSrvc, ResourceSrvc, $scope, $location) {
   let nb = this;
   nb.logout = () => {
     LoginSrvc.logout();

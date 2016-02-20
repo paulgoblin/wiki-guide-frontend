@@ -1,7 +1,6 @@
 'use strict';
-angular.module('wikiApp')
 
-.service( 'UserSrvc', function(CONST, HELPERS, $http, $rootScope) {
+app.service( 'UserSrvc', function(CONST, HELPERS, $http, $rootScope) {
 
   let refreshDist = CONST.REFRESH_DIST;
 

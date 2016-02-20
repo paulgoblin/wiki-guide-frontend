@@ -3,7 +3,7 @@
   margin: auto;
 
   .cards {
-  margin: 0;
+   margin-bottom: 1em;
   }
 
   .preload {
@@ -20,8 +20,10 @@
     @include aspect-ratio(1,1)
     float: left;
     border-radius: 9999px;
-    border: 1px solid $dark-background-color;
+    border: 6px solid #e8e8e8;
     text-align: center;
+    margin: 0 -1px;
+    box-shadow: 0px 2px 2px #bbb;
     i {
       font-size: 12vw;
     }
@@ -45,9 +47,10 @@
     color: $font-color;
     width: 33.33333333%;
     height: 33.33333333%;
+    z-index: 10;
     i {
-      line-height: 55%;
-      font-size: 20vw;
+      line-height: 100%;
+      font-size: 18vw;
     }
   }
 
@@ -56,8 +59,7 @@
       font-size: 5.4em;
     }
     .viewResourceBtn i {
-      line-height: .6em;
-      font-size: 8.7em;
+      font-size: 8.3em;
     }
   }
 

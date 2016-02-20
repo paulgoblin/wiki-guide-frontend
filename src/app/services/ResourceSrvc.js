@@ -1,7 +1,6 @@
 'use strict';
-angular.module('wikiApp')
 
-.service( 'ResourceSrvc', function(CONST, $http, $rootScope) {
+app.service( 'ResourceSrvc', function(CONST, $http, $rootScope) {
 
   this.well = null;
   this.deck = null;

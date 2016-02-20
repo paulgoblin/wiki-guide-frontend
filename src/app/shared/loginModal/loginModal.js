@@ -1,7 +1,6 @@
 'use strict';
-angular.module('wikiApp')
 
-.directive('loginModal', function(){
+app.directive('loginModal', function(){
   return {
     restrict: 'E',
     replace: true,
@@ -14,7 +13,7 @@ angular.module('wikiApp')
   }
 })
 
-.controller('loginCtrl', function($scope, $state, LoginSrvc) {
+app.controller('loginCtrl', function($scope, $state, LoginSrvc) {
 
   var lm = this;
   lm.token = LoginSrvc.token;

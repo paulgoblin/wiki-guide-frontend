@@ -1,8 +1,7 @@
 'use strict';
-angular.module('wikiApp')
 
 // Handles all communication between services or within services.
-.controller('appCtrl', function($scope, CONST, UserSrvc, ResourceSrvc, LoginSrvc){
+app.controller('appCtrl', function($scope, CONST, UserSrvc, ResourceSrvc, LoginSrvc){
 
 
   LoginSrvc.listen('tokenChange', $scope, () => {

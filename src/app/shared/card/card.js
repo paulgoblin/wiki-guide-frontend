@@ -1,7 +1,6 @@
 'use strict';
-angular.module('wikiApp')
 
-.directive('cardDirective', function(){
+app.directive('cardDirective', function(){
   return {
     restrict: 'A',
     controller: 'cardCtrl',
@@ -14,7 +13,7 @@ angular.module('wikiApp')
   }
 })
 
-.controller('cardCtrl', function($scope, UserSrvc, HELPERS) {
+app.controller('cardCtrl', function($scope, UserSrvc, HELPERS) {
 
   let cc = this;
 

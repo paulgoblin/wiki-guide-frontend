@@ -1,7 +1,6 @@
 'use strict';
-angular.module('wikiApp')
 
-.config(function($stateProvider, $urlRouterProvider, localStorageServiceProvider) {
+app.config(function($stateProvider, $urlRouterProvider, localStorageServiceProvider) {
   localStorageServiceProvider.setPrefix('userApp');
 
   $stateProvider

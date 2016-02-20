@@ -1,7 +1,6 @@
 'use strict';
-angular.module('wikiApp')
 
-.service( 'LoginSrvc', function(CONST, $http, $rootScope, $state, localStorageService) {
+app.service( 'LoginSrvc', function(CONST, $http, $rootScope, $state, localStorageService) {
 
   this.logout = () => {
     let token = localStorageService.get('token');

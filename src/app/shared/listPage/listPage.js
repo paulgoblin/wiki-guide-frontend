@@ -1,7 +1,6 @@
 'use strict';
-angular.module('wikiApp')
 
-.directive('listPage', function(){
+app.directive('listPage', function(){
   return {
     restrict: 'E',
     replace: true,
@@ -13,13 +12,13 @@ angular.module('wikiApp')
     templateUrl:'js/shared/listPage/listPage.html',
   }
 })
-.controller('listPageCtrl', function($scope, $state, UserSrvc, ResourceSrvc, HELPERS) {
+app.controller('listPageCtrl', function($scope, $state, UserSrvc, ResourceSrvc, HELPERS) {
   let lp = this;
   lp.me = UserSrvc.me || { likes: [] };
   lp.coords = UserSrvc.coords.lat ? UserSrvc.coords : null;
   lp.nearby = UserSrvc.nearby;
   lp.ratingScale = 10;
-  lp.legend = [...Array(lp.ratingScale)].map((_,i) => `rating${i+1}`).reverse();
+  lp.legend = [...Array(lp.ratingScale)].map((_,i) => `rating${i+1}`);
 
   lp.viewResource = (resource) => {
     ResourceSrvc.setWell(resource);

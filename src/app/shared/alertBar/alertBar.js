@@ -1,7 +1,6 @@
 'use strict';
-angular.module('wikiApp')
 
-.directive('alertBar', function(){
+app.directive('alertBar', function(){
   return {
     restrict: 'E',
     transclude: true,
@@ -17,6 +16,6 @@ angular.module('wikiApp')
     },
   }
 })
-.controller('alertBarCtrl', function(){
+app.controller('alertBarCtrl', function(){
 
 });

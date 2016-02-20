@@ -1,7 +1,6 @@
 'use strict';
-angular.module('wikiApp')
 
-.directive('mainPage', function(){
+app.directive('mainPage', function(){
   return {
     restrict: 'E',
     replace: true,
@@ -14,7 +13,7 @@ angular.module('wikiApp')
   }
 })
 
-.controller('mainPageCtrl', function($scope, $stateParams, ResourceSrvc) {
+app.controller('mainPageCtrl', function($scope, $stateParams, ResourceSrvc) {
   let mp = this;
   mp.showLogin = $stateParams.login;
   mp.deck = ResourceSrvc.deck;

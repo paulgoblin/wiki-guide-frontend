@@ -1,7 +1,6 @@
 'use strict';
-angular.module('wikiApp')
 
-.directive('deck', function(){
+app.directive('deck', function(){
   return {
     restrict: 'E',
     replace: true,
@@ -15,7 +14,7 @@ angular.module('wikiApp')
   }
 })
 
-.controller('deckCtrl', function($state, UserSrvc, ResourceSrvc, $timeout) {
+app.controller('deckCtrl', function($state, UserSrvc, ResourceSrvc, $timeout) {
   let dc = this;
   let animationTime = 0.34;  // seconds
 

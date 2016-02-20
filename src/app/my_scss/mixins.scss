@@ -9,7 +9,7 @@
   > .squareContent {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-55%);
     left: 0;
     right: 0;
     bottom: 0;
@@ -17,7 +17,7 @@
 }
 
 @mixin rating-color($color, $rating) {
-  $max-opacity: 0.7;
+  $max-opacity: 0.5;
   $opacity: $rating*$max-opacity;
   background: opacify( rgba($color,0), $opacity);
 }

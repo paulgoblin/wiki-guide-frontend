@@ -1,7 +1,6 @@
 'use strict';
-angular.module('wikiApp')
 
-.directive('resourcePage', function(){
+app.directive('resourcePage', function(){
   return {
     restrict: 'E',
     replace: true,
@@ -13,7 +12,7 @@ angular.module('wikiApp')
     templateUrl:'js/shared/resourcePage/resourcePage.html',
   }
 })
-.controller('resourcePageCtrl', function($scope, $sce, ResourceSrvc, UserSrvc, HELPERS) {
+app.controller('resourcePageCtrl', function($scope, $sce, ResourceSrvc, UserSrvc, HELPERS) {
   let rp = this;
   let defaultUrl = "https://www.wikipedia.org/"
 
