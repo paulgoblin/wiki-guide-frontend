@@ -1,6 +1,9 @@
 <div id="deck">
   <img class='preload' ng-src="{{dc.preLoad()}}" alt="">
-  <div class="cards card panel panel-default">
+  <div class="cards card panel panel-default"
+  ng-swipe-left="dc.strike(dc.deck[0])"
+  ng-click="dc.viewWell(dc.deck[0])"
+  ng-swipe-right="dc.like(dc.deck[0])">
     <div class="card panel panel-default">
       <div class="movingCard panel panel-default topCard animated"
            ng-if="dc.movingCard"

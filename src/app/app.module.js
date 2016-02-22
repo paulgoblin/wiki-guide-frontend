@@ -3,10 +3,11 @@ let app = angular.module('wikiApp', [
   'ui.bootstrap',
   'ui.router',
   'LocalStorageModule',
+  'ngTouch',
 ])
 
 app.constant('CONST', {
-  API_URL: 'http://desolate-sea-75202.herokuapp.com',
+  API_URL: 'https://desolate-sea-75202.herokuapp.com',
   // API_URL: 'http://localhost:3000',
   INITIAL_SEARCH_RAD: '10',  // miles
   MAX_SEARCH_RAD: '1281',  // miles
