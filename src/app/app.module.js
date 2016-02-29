@@ -8,7 +8,7 @@ let app = angular.module('wikiApp', [
 
 app.constant('CONST', {
   API_URL: 'https://desolate-sea-75202.herokuapp.com',
-  // API_URL: 'http://localhost:3000', 
+  // API_URL: 'http://localhost:3000',
   INITIAL_SEARCH_RAD: '10',  // miles
   MAX_SEARCH_RAD: '100',  // miles
   REFRESH_DIST: '1', //how far your positon must change before deck updates, in miles
