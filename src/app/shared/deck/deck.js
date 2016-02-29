@@ -16,7 +16,7 @@ app.directive('deck', function(){
 
 app.controller('deckCtrl', function($state, UserSrvc, ResourceSrvc, $timeout) {
   let dc = this;
-  let animationTime = 0.34;  // seconds
+  let animationTime = 0.6;  // seconds
 
   dc.deck = dc.deck || [{}];
   dc.movingCard = null;

@@ -45,7 +45,6 @@ app.service( 'LoginSrvc', function(CONST, $http, $rootScope, $state, localStorag
       return localStorageService.remove('token')
     }
     if (payload.exp < Date.now()/1000) {
-      console.log("exp", payload.exp, Date.now()/1000);
       $state.go('main', {login: true})
       return localStorageService.remove('token')
     }
