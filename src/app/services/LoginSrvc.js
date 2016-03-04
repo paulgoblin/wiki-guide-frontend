@@ -26,6 +26,13 @@ app.service( 'LoginSrvc', function(CONST, $http, $rootScope, $state, localStorag
      })
   }
 
+  this.guest = () => {
+    return $http.post(`${CONST.API_URL}/users/guest`)
+     .success( resp => {
+       updateToken(resp);
+     })
+  }
+
   this.listen = (name, scope, callback) => {
     let handler = $rootScope.$on(name, callback);
     scope.$on('$destroy', handler);

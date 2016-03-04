@@ -3,7 +3,6 @@
 // Handles all communication between services or within services.
 app.controller('appCtrl', function($scope, CONST, UserSrvc, ResourceSrvc, LoginSrvc){
 
-
   LoginSrvc.listen('tokenChange', $scope, () => {
     updateUserFromToken();
   })

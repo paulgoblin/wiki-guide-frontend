@@ -3,14 +3,15 @@
   text-align: center;
   padding: 0 $global-gutter;
   // border-bottom: 1px solid $font-color-light;
-  .navBtn {
-    font-size: $font-size-h3;
-  }
+
   .navBtn:first-of-type {
     float:left;
   }
   .navBtn:last-of-type{
     float:right;
+  }
+  .navBtn {
+    font-size: $font-size-h3;
   }
 }
 

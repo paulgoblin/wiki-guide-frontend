@@ -20,7 +20,12 @@
         <button class="form-control btn btn-primary" ng-click="lm.submitRegister(lm.registerInfo)">Register</button>
         <alert-bar class="alert alert-danger" ng-if='lm.registerAlert' ng-click="lm.closeRegisterAlert()">{{lm.registerAlert}}</alert-bar>
       </div>
-
+      <div class="guest">
+        <h2>Visit as Guest</h2>
+        <p><em>Warning: nothing will be saved!</em></p>
+        <button class="form-control btn btn-primary" ng-click="lm.submitGuest()">View as guest</button>
+        <alert-bar class="alert alert-danger" ng-if='lm.guestAlert' ng-click="lm.closeGuestAlert()">{{lm.guestAlert}}</alert-bar>
+      </div>
     </div>
   </div>
 </div>

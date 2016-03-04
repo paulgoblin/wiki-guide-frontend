@@ -37,11 +37,21 @@ app.controller('loginCtrl', function($scope, $state, LoginSrvc) {
         console.log("error", err);
       })
   }
+  lm.submitGuest = () => {
+    LoginSrvc.guest()
+      .success( resp => {
+        $state.go('main', {login: null});
+      })
+      .error( err => {
+        lm.guestAlert = err;
+        console.log("error", err);
+      })
+  }
   lm.closeLoginModal = () => {
     window.location.hash = window.location.hash.replace(/\?.*/,'')
   }
   lm.closeLoginAlert = () =>  lm.loginAlert = null;
   lm.closeRegisterAlert = () =>  lm.registerAlert = null;
-
+  lm.closeGuestAlert = () =>  lm.guestAlert = null;
 
 });

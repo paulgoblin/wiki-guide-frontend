@@ -57,8 +57,8 @@ gulp.task('bundle', function(done) {
       presets: ['es2015']
     }))
     .pipe(concat('bundle.js'))
-    .pipe(ngmin({dynamic: true}))
-    .pipe(uglify())
+    // .pipe(ngmin({dynamic: true}))
+    // .pipe(uglify())
     .pipe(gulp.dest('dist/js'))
     .on('end', done)
 });
