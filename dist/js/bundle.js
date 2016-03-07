@@ -1,6 +1,6 @@
 'use strict';
 
-var host = "YOURDOMAIN.github.io";
+var host = "paulgoblin.github.io";
 if (host == window.location.host && window.location.protocol != "https:") window.location.protocol = "https";
 
 var app = angular.module('wikiApp', ['ui.bootstrap', 'ui.router', 'LocalStorageModule', 'ngTouch']);
@@ -351,24 +351,6 @@ app.service('UserSrvc', function (CONST, HELPERS, $http, $rootScope) {
 });
 'use strict';
 
-app.directive('alertBar', function () {
-  return {
-    restrict: 'E',
-    transclude: true,
-    replace: true,
-    controller: 'alertBarCtrl',
-    controllerAs: 'ab',
-    scope: true,
-    bindToController: {},
-    templateUrl: 'js/shared/alertBar/alertBar.html',
-    link: function link(scope, el, attrs, ctrl, transclude) {
-      el.append(transclude());
-    }
-  };
-});
-app.controller('alertBarCtrl', function () {});
-'use strict';
-
 app.directive('cardDirective', function () {
   return {
     restrict: 'A',
@@ -391,6 +373,24 @@ app.controller('cardCtrl', function ($scope, UserSrvc, HELPERS) {
     return HELPERS.calcDist(UserSrvc.coords, cc.resourceCoords()) || '';
   };
 });
+'use strict';
+
+app.directive('alertBar', function () {
+  return {
+    restrict: 'E',
+    transclude: true,
+    replace: true,
+    controller: 'alertBarCtrl',
+    controllerAs: 'ab',
+    scope: true,
+    bindToController: {},
+    templateUrl: 'js/shared/alertBar/alertBar.html',
+    link: function link(scope, el, attrs, ctrl, transclude) {
+      el.append(transclude());
+    }
+  };
+});
+app.controller('alertBarCtrl', function () {});
 'use strict';
 
 app.directive('deck', function () {
@@ -448,6 +448,56 @@ app.controller('deckCtrl', function ($state, UserSrvc, ResourceSrvc, $timeout) {
 });
 'use strict';
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+app.directive('listPage', function () {
+  return {
+    restrict: 'E',
+    replace: true,
+    controller: 'listPageCtrl',
+    controllerAs: 'lp',
+    scope: true,
+    bindToController: {},
+    templateUrl: 'js/shared/listPage/listPage.html'
+  };
+});
+app.controller('listPageCtrl', function ($scope, $state, UserSrvc, ResourceSrvc, HELPERS) {
+  var lp = this;
+  lp.me = UserSrvc.me || { likes: [] };
+  lp.coords = UserSrvc.coords.lat ? UserSrvc.coords : null;
+  lp.nearby = UserSrvc.nearby;
+  lp.ratingScale = 10;
+  lp.legend = [].concat(_toConsumableArray(Array(lp.ratingScale))).map(function (_, i) {
+    return 'rating' + (i + 1);
+  });
+
+  lp.viewResource = function (resource) {
+    ResourceSrvc.setWell(resource);
+    $state.go('resource', { resourceId: resource._id });
+  };
+  lp.sortOrder = function (resource) {
+    if (!lp.nearby) return 'index';
+    return -UserSrvc.likesDistDict[resource.pageid];
+  };
+  lp.ratingClass = function (resource) {
+    if (!lp.nearby) return;
+    var rating = Math.ceil(lp.ratingScale * UserSrvc.likesDistDict[resource.pageid]);
+    return 'rating' + rating;
+  };
+  lp.togNearby = function () {
+    UserSrvc.nearby = !UserSrvc.nearby;
+  };
+
+  // listners
+  UserSrvc.listen('me', $scope, function () {
+    lp.me = UserSrvc.me;
+  });
+  UserSrvc.listen('coords', $scope, function () {
+    lp.coords = UserSrvc.coords;
+  });
+});
+'use strict';
+
 app.directive('loginModal', function () {
   return {
     restrict: 'E',
@@ -500,56 +550,6 @@ app.controller('loginCtrl', function ($scope, $state, LoginSrvc) {
   lm.closeGuestAlert = function () {
     return lm.guestAlert = null;
   };
-});
-'use strict';
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-app.directive('listPage', function () {
-  return {
-    restrict: 'E',
-    replace: true,
-    controller: 'listPageCtrl',
-    controllerAs: 'lp',
-    scope: true,
-    bindToController: {},
-    templateUrl: 'js/shared/listPage/listPage.html'
-  };
-});
-app.controller('listPageCtrl', function ($scope, $state, UserSrvc, ResourceSrvc, HELPERS) {
-  var lp = this;
-  lp.me = UserSrvc.me || { likes: [] };
-  lp.coords = UserSrvc.coords.lat ? UserSrvc.coords : null;
-  lp.nearby = UserSrvc.nearby;
-  lp.ratingScale = 10;
-  lp.legend = [].concat(_toConsumableArray(Array(lp.ratingScale))).map(function (_, i) {
-    return 'rating' + (i + 1);
-  });
-
-  lp.viewResource = function (resource) {
-    ResourceSrvc.setWell(resource);
-    $state.go('resource', { resourceId: resource._id });
-  };
-  lp.sortOrder = function (resource) {
-    if (!lp.nearby) return 'index';
-    return -UserSrvc.likesDistDict[resource.pageid];
-  };
-  lp.ratingClass = function (resource) {
-    if (!lp.nearby) return;
-    var rating = Math.ceil(lp.ratingScale * UserSrvc.likesDistDict[resource.pageid]);
-    return 'rating' + rating;
-  };
-  lp.togNearby = function () {
-    UserSrvc.nearby = !UserSrvc.nearby;
-  };
-
-  // listners
-  UserSrvc.listen('me', $scope, function () {
-    lp.me = UserSrvc.me;
-  });
-  UserSrvc.listen('coords', $scope, function () {
-    lp.coords = UserSrvc.coords;
-  });
 });
 'use strict';
 
