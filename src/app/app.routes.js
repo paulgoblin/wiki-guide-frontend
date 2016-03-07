@@ -1,6 +1,11 @@
 'use strict';
 
 app.config(function($stateProvider, $urlRouterProvider, localStorageServiceProvider) {
+
+  var host = "paulgoblin.github.io";
+  if ((host == window.location.host) && (window.location.protocol != "https:"))
+      window.location.protocol = "https";
+      
   localStorageServiceProvider.setPrefix('userApp');
 
   $stateProvider

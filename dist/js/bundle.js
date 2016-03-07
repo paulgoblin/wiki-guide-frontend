@@ -1,8 +1,5 @@
 'use strict';
 
-var host = "paulgoblin.github.io";
-if (host == window.location.host && window.location.protocol != "https:") window.location.protocol = "https";
-
 var app = angular.module('wikiApp', ['ui.bootstrap', 'ui.router', 'LocalStorageModule', 'ngTouch']);
 
 app.constant('CONST', {
@@ -33,6 +30,10 @@ app.run(function (UserSrvc, LoginSrvc) {
 'use strict';
 
 app.config(function ($stateProvider, $urlRouterProvider, localStorageServiceProvider) {
+
+  var host = "paulgoblin.github.io";
+  if (host == window.location.host && window.location.protocol != "https:") window.location.protocol = "https";
+
   localStorageServiceProvider.setPrefix('userApp');
 
   $stateProvider.state('main', {
@@ -351,6 +352,24 @@ app.service('UserSrvc', function (CONST, HELPERS, $http, $rootScope) {
 });
 'use strict';
 
+app.directive('alertBar', function () {
+  return {
+    restrict: 'E',
+    transclude: true,
+    replace: true,
+    controller: 'alertBarCtrl',
+    controllerAs: 'ab',
+    scope: true,
+    bindToController: {},
+    templateUrl: 'js/shared/alertBar/alertBar.html',
+    link: function link(scope, el, attrs, ctrl, transclude) {
+      el.append(transclude());
+    }
+  };
+});
+app.controller('alertBarCtrl', function () {});
+'use strict';
+
 app.directive('cardDirective', function () {
   return {
     restrict: 'A',
@@ -373,24 +392,6 @@ app.controller('cardCtrl', function ($scope, UserSrvc, HELPERS) {
     return HELPERS.calcDist(UserSrvc.coords, cc.resourceCoords()) || '';
   };
 });
-'use strict';
-
-app.directive('alertBar', function () {
-  return {
-    restrict: 'E',
-    transclude: true,
-    replace: true,
-    controller: 'alertBarCtrl',
-    controllerAs: 'ab',
-    scope: true,
-    bindToController: {},
-    templateUrl: 'js/shared/alertBar/alertBar.html',
-    link: function link(scope, el, attrs, ctrl, transclude) {
-      el.append(transclude());
-    }
-  };
-});
-app.controller('alertBarCtrl', function () {});
 'use strict';
 
 app.directive('deck', function () {
