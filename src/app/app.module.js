@@ -29,6 +29,7 @@ app.constant('HELPERS', {
 })
 
 app.run(function (UserSrvc, LoginSrvc) {
+  LoginSrvc.forceSSL();
   UserSrvc.locate();
   LoginSrvc.init(UserSrvc.requestMe);
 })

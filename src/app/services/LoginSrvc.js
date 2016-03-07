@@ -1,6 +1,12 @@
 'use strict';
 
-app.service( 'LoginSrvc', function(CONST, $http, $rootScope, $state, localStorageService) {
+app.service( 'LoginSrvc', function(CONST, $http, $rootScope, $state, $location, localStorageService) {
+
+  this.forceSSL = () => {
+    if ($location.protocol() !== 'https') {
+        $window.location.href = $location.absUrl().replace('http', 'https');
+    }
+  };
 
   this.logout = () => {
     let token = localStorageService.get('token');
