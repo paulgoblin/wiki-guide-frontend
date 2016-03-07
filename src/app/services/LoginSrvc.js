@@ -1,10 +1,10 @@
 'use strict';
 
-app.service( 'LoginSrvc', function(CONST, $http, $rootScope, $state, $location, localStorageService) {
+app.service( 'LoginSrvc', function(CONST, $http, $rootScope, $state, $location, $window, localStorageService) {
 
   this.forceSSL = () => {
     if ($location.protocol() !== 'https') {
-        $window.location.href = $location.absUrl().replace('http', 'https');
+      $window.location.href = $location.absUrl().replace('http', 'https');
     }
   };
 
