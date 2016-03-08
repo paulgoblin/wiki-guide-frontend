@@ -31,7 +31,7 @@ app.controller('deckCtrl', function($state, UserSrvc, ResourceSrvc, $timeout) {
 
   dc.like = (resource) => {
     if (dc.movingCard) return;
-    if (!dc.deck[0].info) return;
+    if (!dc.deck[0].info.pageid) return;
     movingCardTimeout();
     dc.liked = true;
     dc.movingCard = angular.copy(resource);
@@ -40,7 +40,7 @@ app.controller('deckCtrl', function($state, UserSrvc, ResourceSrvc, $timeout) {
 
   dc.strike = (resource) => {
     if (dc.movingCard) return;
-    if (!dc.deck[0].info) return;
+    if (!dc.deck[0].info.pageid) return;
     movingCardTimeout();
     dc.liked = false;
     dc.movingCard = angular.copy(resource);

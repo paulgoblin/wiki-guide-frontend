@@ -44,6 +44,10 @@ app.service( 'ResourceSrvc', function(CONST, $http, $rootScope) {
     updateDeck([{}]);
   }
 
+  this.displayErrorCard = (card) => {
+    updateDeck([card]);
+  }
+
   this.setWell = (resource) => {
     this.well = resource;
   }
