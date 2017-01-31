@@ -7,9 +7,15 @@ let app = angular.module('wikiApp', [
   'ngTouch',
 ])
 
+let APP_ENV = process.env.APP_ENV;
+
+let API_URL = (APP_ENV === 'development') ?
+  'http://localhost:3000' :
+  'https://desolate-sea-75202.herokuapp.com'
+
 app.constant('CONST', {
-  API_URL: 'https://desolate-sea-75202.herokuapp.com',
-  // API_URL: 'http://localhost:3000',
+  APP_ENV: APP_ENV,
+  API_URL: API_URL,
   INITIAL_SEARCH_RAD: '10',  // miles
   MAX_SEARCH_RAD: '100',  // miles
   REFRESH_DIST: '1', //how far your positon must change before deck updates, in miles
@@ -29,7 +35,7 @@ app.constant('HELPERS', {
 })
 
 app.run(function (UserSrvc, LoginSrvc) {
-  LoginSrvc.forceSSL();
+  if (APP_ENV !== 'development') LoginSrvc.forceSSL();
   UserSrvc.locate();
   LoginSrvc.init(UserSrvc.requestMe);
 })

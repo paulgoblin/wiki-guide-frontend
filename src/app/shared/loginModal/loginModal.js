@@ -18,17 +18,25 @@ app.controller('loginCtrl', function($scope, $state, LoginSrvc) {
   var lm = this;
   lm.token = LoginSrvc.token;
   lm.submitLogin = (loginInfo) => {
-    LoginSrvc.login(loginInfo)
-      .success( resp => {
-        $state.go('main', {login: null});
-      })
-      .error( err => {
-        lm.loginAlert = err;
-        console.log("error", err);
-      })
+    handleRequest(LoginSrvc.login,  loginInfo);
   }
   lm.submitRegister = (registerInfo) => {
-    LoginSrvc.register(registerInfo)
+    handleRequest(LoginSrvc.register, registerInfo);
+  };
+  lm.submitGuest = () => {
+    handleRequest(LoginSrvc.guest);
+  }
+
+  lm.closeLoginModal = () => {
+    window.location.hash = window.location.hash.replace(/\?.*/,'')
+  }
+  lm.closeLoginAlert = () =>  lm.loginAlert = null;
+  lm.closeRegisterAlert = () =>  lm.registerAlert = null;
+  lm.closeGuestAlert = () =>  lm.guestAlert = null;
+
+  function handleRequest(fn, info) {
+    lm.spin = true;
+    return fn(info)
       .success( resp => {
         $state.go('main', {login: null});
       })
@@ -36,22 +44,7 @@ app.controller('loginCtrl', function($scope, $state, LoginSrvc) {
         lm.registerAlert = err;
         console.log("error", err);
       })
+      .finally( () => { lm.spin = false })
   }
-  lm.submitGuest = () => {
-    LoginSrvc.guest()
-      .success( resp => {
-        $state.go('main', {login: null});
-      })
-      .error( err => {
-        lm.guestAlert = err;
-        console.log("error", err);
-      })
-  }
-  lm.closeLoginModal = () => {
-    window.location.hash = window.location.hash.replace(/\?.*/,'')
-  }
-  lm.closeLoginAlert = () =>  lm.loginAlert = null;
-  lm.closeRegisterAlert = () =>  lm.registerAlert = null;
-  lm.closeGuestAlert = () =>  lm.guestAlert = null;
 
 });

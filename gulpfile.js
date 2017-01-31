@@ -8,6 +8,9 @@ var ngmin = require('gulp-ngmin');
 var uglify = require('gulp-uglify');
 var concat = require("gulp-concat");
 var babel = require('gulp-babel');
+var replace = require('gulp-replace');
+
+var APP_ENV = '\'' + process.env.APP_ENV + '\'';
 
 var dirs = {
   src: {
@@ -53,6 +56,7 @@ gulp.task('bundle', function(done) {
     .pipe(ignore('my_scss'))
     .pipe(gulp.dest('dist/js'))
   gulp.src(dirs.src.js)
+    .pipe(replace(/process.env.APP_ENV/g, APP_ENV))
     .pipe(babel({
       presets: ['es2015']
     }))

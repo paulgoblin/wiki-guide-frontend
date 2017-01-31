@@ -14,6 +14,7 @@ app.directive('mainPage', function(){
 })
 
 app.controller('mainPageCtrl', function($scope, $stateParams, $timeout, ResourceSrvc, LoginSrvc, UserSrvc) {
+
   let mp = this;
   mp.showLogin = $stateParams.login;
   mp.deck = ResourceSrvc.deck;
