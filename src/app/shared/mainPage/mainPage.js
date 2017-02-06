@@ -35,7 +35,7 @@ app.controller('mainPageCtrl', function($scope, $stateParams, $timeout, Resource
           ResourceSrvc.displayErrorCard({
             info: {
               title: "We can't find you right now.",
-              intro: "Try coming back later!",
+              intro: "Turn on your location, or try coming back later!",
               imgUrl:"http://danielryanday.com/wp-content/uploads/2013/04/waldo.png"
             }
           })

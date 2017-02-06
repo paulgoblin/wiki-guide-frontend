@@ -10,6 +10,14 @@ app.service( 'UserSrvc', function(CONST, HELPERS, $http, $rootScope) {
   this.locationWatcher = null;
   this.nearby = null;
 
+  let defaultPosition = {
+    // home sweet home
+    coords: {
+      latitude: 37.3907,
+      longitude: -122.0637,
+    }
+  };
+
   this.locate = () => {
     if (!("geolocation" in navigator)) return;
     navigator.geolocation.clearWatch(this.locationWatcher);
@@ -20,6 +28,11 @@ app.service( 'UserSrvc', function(CONST, HELPERS, $http, $rootScope) {
       }
     }, (err) => {
       console.log("couldn't find geolocation", err);
+
+      if (CONST.APP_ENV === 'development') {
+        updateCoords(defaultPosition);
+        calcLikesDist();
+      }
     });
   }
 

@@ -1,9 +1,11 @@
 <div id="resourcePage" class="page">
-  <div id="resourcePanel" class="viewPanel">
+  <div class="viewPanel">
     <span ng-if="rp.dist" class="distHUD">
       {{rp.dist}} mi
     </span>
-    <iframe class="wellView" ng-src="{{rp.iframeUrl}}" frameborder="0">
-    </iframe>
+    <div class="wellView">
+	    <iframe class="wellIframe" ng-src="{{rp.iframeUrl}}" frameborder="0">
+	    </iframe>
+    </div>
   </div>
 </div>

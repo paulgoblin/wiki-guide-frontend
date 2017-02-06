@@ -1,7 +1,6 @@
 'use strict';
 
 let app = angular.module('wikiApp', [
-  'ui.bootstrap',
   'ui.router',
   'LocalStorageModule',
   'ngTouch',
@@ -10,7 +9,7 @@ let app = angular.module('wikiApp', [
 let APP_ENV = process.env.APP_ENV;
 
 let API_URL = (APP_ENV === 'development') ?
-  'http://localhost:3000' :
+  'http://192.168.0.16:3000' :
   'https://desolate-sea-75202.herokuapp.com'
 
 app.constant('CONST', {

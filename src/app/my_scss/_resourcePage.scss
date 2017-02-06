@@ -2,15 +2,18 @@
 
   padding-top: 0em;
 
-  #resourcePanel {
-    height: calc(100vh - #{$nav-bar-height} - #{$nav-underline-height} - 10px);
-  }
-
   .wellView {
     width: 100vw;
     height: 100%;
     left: 0;
     position: fixed;
+    -webkit-overflow-scrolling: touch;
+    overflow-y: scroll;
+  }
+
+  .wellIframe {
+    height: 100%;
+    width: 100%;
   }
 
   .distHUD {
